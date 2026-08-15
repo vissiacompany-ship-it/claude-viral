@@ -1,0 +1,243 @@
+[
+  {
+    "id": "editorial-fotografico-9",
+    "name": "Retrato & Texto",
+    "description": "Fundo branco + serifada, fotos com cantos arredondados (topo, base, dupla ou tripla), capas com foto cheia, avatar+selo verificado, paginação por bolinhas.",
+    "slides": [
+      {
+        "background": "cover",
+        "style": "editorial-serif",
+        "label": "1 · Capa (foto cheia)",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": true,
+        "defaultTextAnchor": "bottom",
+        "defaultGradientOn": true,
+        "defaultGradientDir": "bottom",
+        "defaultTitleColor": "#ffffff",
+        "defaultBodyColor": "#ffffff",
+        "defaultHandleColor": "#ffffff",
+        "defaultSubtitleSize": 38
+      },
+      {
+        "background": "light",
+        "style": "editorial-serif",
+        "label": "2 · Texto + imagem no topo",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "imageLayout": "top"
+      },
+      {
+        "background": "light",
+        "style": "editorial-serif",
+        "label": "3 · Texto + imagem na base",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "imageLayout": "bottom"
+      },
+      {
+        "background": "light",
+        "style": "editorial-serif",
+        "label": "4 · Texto + imagem no topo",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "imageLayout": "top"
+      },
+      {
+        "background": "cover",
+        "style": "editorial-serif",
+        "label": "5 · Capa (foto cheia)",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": true
+      },
+      {
+        "background": "light",
+        "style": "editorial-serif",
+        "label": "6 · Texto + imagem no topo",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "imageLayout": "top"
+      },
+      {
+        "background": "light",
+        "style": "editorial-serif",
+        "label": "7 · Texto + 2 imagens na base",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "imageLayout": "double-bottom"
+      },
+      {
+        "background": "cover",
+        "style": "editorial-serif",
+        "label": "8 · Capa (foto cheia)",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": true
+      },
+      {
+        "background": "light",
+        "style": "editorial-serif",
+        "label": "9 · 3 imagens no topo + texto",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "imageLayout": "triple-top"
+      }
+    ],
+    "createdAt": "2026-08-12T13:00:00.000Z"
+  },
+  {
+    "id": "quotes-bold-sans-9",
+    "name": "Frase de Impacto",
+    "description": "Capa com foto e frase em destaque, slides internos só com texto em fundo branco, avatar em pílula com anel colorido, sem rodapé fixo.",
+    "slides": [
+      {
+        "background": "cover",
+        "style": "bold-sans",
+        "label": "1 · Capa (foto cheia)",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": true,
+        "defaultTextAnchor": "bottom",
+        "defaultGradientOn": true,
+        "defaultGradientDir": "bottom",
+        "defaultTitleColor": "#ffffff",
+        "defaultHandleColor": "#ffffff",
+        "defaultSubtitle": "Arrasta para o lado >",
+        "defaultTitleSize": 57,
+        "defaultTitleWeight": 300,
+        "defaultTitleLineHeight": 1,
+        "defaultSubtitleSize": 22,
+        "defaultMarginH": 40,
+        "defaultBlockGap": 26
+      },
+      {
+        "background": "light",
+        "style": "bold-sans",
+        "label": "2 · Texto",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "top",
+        "defaultBodySize": 46,
+        "defaultBodyWeight": 400,
+        "defaultBodyLineHeight": 1.4,
+        "defaultMarginH": 80,
+        "defaultBlockGap": 24
+      },
+      {
+        "background": "light",
+        "style": "bold-sans",
+        "label": "3 · Texto",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "top",
+        "defaultBodySize": 46,
+        "defaultBodyWeight": 400,
+        "defaultBodyLineHeight": 1.4,
+        "defaultMarginH": 80,
+        "defaultBlockGap": 24
+      },
+      {
+        "background": "light",
+        "style": "bold-sans",
+        "label": "4 · Texto",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "top",
+        "defaultBodySize": 46,
+        "defaultBodyWeight": 400,
+        "defaultBodyLineHeight": 1.4,
+        "defaultMarginH": 80,
+        "defaultBlockGap": 24
+      },
+      {
+        "background": "light",
+        "style": "bold-sans",
+        "label": "5 · Texto",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "top",
+        "defaultBodySize": 46,
+        "defaultBodyWeight": 400,
+        "defaultBodyLineHeight": 1.4,
+        "defaultMarginH": 80,
+        "defaultBlockGap": 24
+      },
+      {
+        "background": "light",
+        "style": "bold-sans",
+        "label": "6 · Texto",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "top",
+        "defaultBodySize": 46,
+        "defaultBodyWeight": 400,
+        "defaultBodyLineHeight": 1.4,
+        "defaultMarginH": 80,
+        "defaultBlockGap": 24
+      },
+      {
+        "background": "light",
+        "style": "bold-sans",
+        "label": "7 · Texto",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "top",
+        "defaultBodySize": 46,
+        "defaultBodyWeight": 400,
+        "defaultBodyLineHeight": 1.4,
+        "defaultMarginH": 80,
+        "defaultBlockGap": 24
+      },
+      {
+        "background": "light",
+        "style": "bold-sans",
+        "label": "8 · Texto",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "top",
+        "defaultBodySize": 46,
+        "defaultBodyWeight": 400,
+        "defaultBodyLineHeight": 1.4,
+        "defaultMarginH": 80,
+        "defaultBlockGap": 24
+      },
+      {
+        "background": "light",
+        "style": "bold-sans",
+        "label": "9 · Texto (CTA)",
+        "hasTag": false,
+        "hasBody": true,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "top",
+        "defaultBodySize": 46,
+        "defaultBodyWeight": 400,
+        "defaultBodyLineHeight": 1.4,
+        "defaultMarginH": 80,
+        "defaultBlockGap": 24
+      }
+    ],
+    "createdAt": "2026-08-14T00:00:00.000Z"
+  }
+]

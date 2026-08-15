@@ -33,6 +33,13 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# dados do usuário (perfis e carrosséis) — cada pessoa que clonar começa do zero,
+# nunca commitar dado real de ninguém aqui. IMPORTANTE: data/templates.json fica DE FORA
+# desse ignore de propósito — são os modelos prontos que fazem parte do produto.
+/data/profiles.json
+/data/carousels.json
+/data/settings.json
+
 # vercel
 .vercel
 
