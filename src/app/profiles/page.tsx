@@ -4,13 +4,15 @@ import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { Profile } from '@/types'
 import { ArrowLeft, Plus, Trash2, Edit3, User } from 'lucide-react'
+import BrandColorField from '@/components/BrandColorField'
+import Sidebar from '@/components/Sidebar'
 
 const TONES = ['Profissional', 'Educativo', 'Inspiracional', 'Casual', 'Direto', 'Polêmico', 'Jornalístico']
 const CONTENT_TYPES = ['Tendência Interpretada', 'Tese Contraintuitiva', 'Case/Benchmark', 'Previsão/Futuro', 'Análise Cultural', 'Investigação']
 
 const EMPTY: Omit<Profile, 'id' | 'createdAt'> = {
   name: '', instagram: '', niche: '', audience: '',
-  tone: '', contentType: '', extraInstructions: '', primaryColor: '#E8421A', logo: undefined,
+  tone: '', contentType: '', extraInstructions: '', primaryColor: '#E8421A', primaryColors: [], logo: undefined,
   brandText: '', brandPosition: 'tr', verifiedBadge: true,
 }
 
@@ -36,7 +38,7 @@ export default function ProfilesPage() {
 
   const openEdit = (p: Profile) => {
     setEditing(p)
-    setForm({ name: p.name, instagram: p.instagram, niche: p.niche, audience: p.audience, tone: p.tone, contentType: p.contentType, extraInstructions: p.extraInstructions, primaryColor: p.primaryColor, logo: p.logo, brandText: p.brandText, brandPosition: p.brandPosition, verifiedBadge: p.verifiedBadge !== false })
+    setForm({ name: p.name, instagram: p.instagram, niche: p.niche, audience: p.audience, tone: p.tone, contentType: p.contentType, extraInstructions: p.extraInstructions, primaryColor: p.primaryColor, primaryColors: p.primaryColors || [], logo: p.logo, brandText: p.brandText, brandPosition: p.brandPosition, verifiedBadge: p.verifiedBadge !== false })
     setShowForm(true)
   }
 
@@ -64,7 +66,9 @@ export default function ProfilesPage() {
   }
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen flex" style={{ background: 'var(--bo-paper)', color: 'var(--bo-ink)' }}>
+      <Sidebar active="profiles"/>
+      <main className="flex-1 overflow-auto p-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-4 mb-8">
           <Link href="/">
@@ -95,7 +99,7 @@ export default function ProfilesPage() {
           )}
           {profiles.map(p => (
             <div key={p.id} className="flex items-center gap-4 p-4 rounded-2xl" style={{ background: 'var(--bg2)', border: '1px solid var(--border)' }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white flex-shrink-0 overflow-hidden" style={{ background: p.primaryColor }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-black flex-shrink-0 overflow-hidden" style={{ background: p.primaryColor }}>
                 {p.logo ? <img src={p.logo} alt="" className="w-full h-full object-cover"/> : p.name.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
@@ -139,7 +143,7 @@ export default function ProfilesPage() {
               <Field label="Tom de voz">
                 <div className="flex flex-wrap gap-2">
                   {TONES.map(t => (
-                    <button key={t} onClick={() => setForm(f => ({ ...f, tone: t }))} className="px-3 py-1.5 rounded-lg text-xs font-medium transition-colors" style={form.tone === t ? { background: 'var(--grad)', color: '#000' } : { background: 'var(--bg3)', color: 'var(--muted)' }}>
+                    <button key={t} onClick={() => setForm(f => ({ ...f, tone: t }))} className="px-3 py-1.5 rounded-lg text-xs font-medium transition-colors" style={form.tone === t ? { background: 'rgba(255,138,30,0.16)', color: 'var(--accent2)', border: '1px solid var(--accent)' } : { background: 'var(--bg3)', color: 'var(--muted)', border: '1px solid transparent' }}>
                       {t}
                     </button>
                   ))}
@@ -148,7 +152,7 @@ export default function ProfilesPage() {
               <Field label="Tipo de conteúdo preferido">
                 <div className="flex flex-wrap gap-2">
                   {CONTENT_TYPES.map(t => (
-                    <button key={t} onClick={() => setForm(f => ({ ...f, contentType: t }))} className="px-3 py-1.5 rounded-lg text-xs font-medium transition-colors" style={form.contentType === t ? { background: 'var(--grad)', color: '#000' } : { background: 'var(--bg3)', color: 'var(--muted)' }}>
+                    <button key={t} onClick={() => setForm(f => ({ ...f, contentType: t }))} className="px-3 py-1.5 rounded-lg text-xs font-medium transition-colors" style={form.contentType === t ? { background: 'rgba(255,138,30,0.16)', color: 'var(--accent2)', border: '1px solid var(--accent)' } : { background: 'var(--bg3)', color: 'var(--muted)', border: '1px solid transparent' }}>
                       {t}
                     </button>
                   ))}
@@ -156,12 +160,9 @@ export default function ProfilesPage() {
               </Field>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-4">
-              <Field label="Cor principal da marca">
-                <div className="flex items-center gap-3">
-                  <input type="color" value={form.primaryColor} onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))} className="w-10 h-10 rounded-lg cursor-pointer border-0" style={{ background: 'var(--bg3)' }}/>
-                  <input className="flex-1" value={form.primaryColor} onChange={e => setForm(f => ({ ...f, primaryColor: e.target.value }))} placeholder="#E8421A"/>
-                </div>
-              </Field>
+              <BrandColorField label="Cor principal da marca" color={form.primaryColor} colors={form.primaryColors || []}
+                onColorChange={c => setForm(f => ({ ...f, primaryColor: c }))}
+                onColorsChange={cs => setForm(f => ({ ...f, primaryColors: cs }))}/>
               <Field label="Foto de perfil (avatar)">
                 <div className="flex items-center gap-2">
                   {form.logo && <img src={form.logo} alt="" className="w-10 h-10 rounded-lg object-cover flex-shrink-0"/>}
@@ -187,7 +188,7 @@ export default function ProfilesPage() {
                   style={{ background: 'var(--bg3)', border: '1px solid var(--border)' }}>
                   <span className="text-xs">{form.verifiedBadge ? 'Perfil verificado' : 'Sem selo'}</span>
                   <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
-                    style={{ background: form.verifiedBadge ? 'var(--grad)' : 'var(--bg2)', color: form.verifiedBadge ? '#000' : 'var(--muted)' }}>
+                    style={{ background: form.verifiedBadge ? 'rgba(255,138,30,0.16)' : 'var(--bg2)', color: form.verifiedBadge ? 'var(--accent2)' : 'var(--muted)' }}>
                     {form.verifiedBadge ? 'Mostrando' : 'Escondido'}
                   </span>
                 </button>
@@ -207,6 +208,7 @@ export default function ProfilesPage() {
           </div>
         )}
       </div>
+      </main>
     </div>
   )
 }

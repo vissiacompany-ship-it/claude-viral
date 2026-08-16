@@ -1,35 +1,61 @@
 @import "tailwindcss";
 
+/* Identidade visual "Claude Viral" — fundo em degradê azul-marinho (modo escuro,
+   padrão) ou branco (modo claro), acento sempre em degradê âmbar/amarelo, trocáveis
+   pelo botão de tema (ver ThemeToggle + script anti-flash no layout.tsx). Tudo no
+   app lê essas variáveis, nunca cor fixa. */
 :root {
-  /* Identidade visual do Banco de Ofertas, aplicada em todo o sistema — superfícies
-     neutras (sem tom roxo) + acento verde-limão sólido. --grad deixou de ser um
-     degradê rosa/laranja e virou um degradê monocromático (limão -> limão escuro)
-     só pra manter o efeito de profundidade nos botões que já usavam var(--grad). */
-  --bg: #161618;
-  --bg2: #1e1e21;
-  --bg3: #28282c;
-  --border: #36363b;
-  --border2: #48484e;
-  --text: #f5f5f7;
-  --muted: #86868d;
-  --accent: #A6FF3E;
-  --accent2: #8FE62E;
-  --grad: linear-gradient(135deg, #A6FF3E, #8FE62E);
+  --bg: #0a0d24;
+  --bg-grad: linear-gradient(135deg, #0a0d24, #141a42);
+  --bg2: #11142f;
+  --bg3: #181c40;
+  --border: #262a52;
+  --border2: #363b6b;
+  --text: #ffffff;
+  --muted: #9aa0c0;
+  --accent: #FF8A1E;
+  --accent2: #FFC94A;
+  --grad: linear-gradient(135deg, #FFC94A, #FF6A1E);
 
-  --bo-paper: #161618;
-  --bo-cloud: #1e1e21;
-  --bo-mist:  #28282c;
-  --bo-hairline: #36363b;
-  --bo-hairline2: #48484e;
-  --bo-ink: #f5f5f7;
-  --bo-graphite: #a8a8af;
-  --bo-ash: #86868d;
-  --bo-accent: #A6FF3E;
-  --bo-accent-2: #8FE62E;
+  --bo-paper: #0a0d24;
+  --bo-cloud: #11142f;
+  --bo-mist:  #181c40;
+  --bo-hairline: #262a52;
+  --bo-hairline2: #363b6b;
+  --bo-ink: #ffffff;
+  --bo-graphite: #b8bdd8;
+  --bo-ash: #9aa0c0;
+  --bo-accent: #FF8A1E;
+  --bo-accent-2: #FFC94A;
+}
+
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-grad: #ffffff;
+  --bg2: #f6f6f7;
+  --bg3: #eeeeef;
+  --border: #e3e3e5;
+  --border2: #d2d2d5;
+  --text: #17171a;
+  --muted: #6c6c72;
+  --accent: #FF8A1E;
+  --accent2: #FFC94A;
+  --grad: linear-gradient(135deg, #FFC94A, #FF6A1E);
+
+  --bo-paper: #ffffff;
+  --bo-cloud: #f6f6f7;
+  --bo-mist:  #eeeeef;
+  --bo-hairline: #e3e3e5;
+  --bo-hairline2: #d2d2d5;
+  --bo-ink: #17171a;
+  --bo-graphite: #4d4d52;
+  --bo-ash: #6c6c72;
+  --bo-accent: #FF8A1E;
+  --bo-accent-2: #FFC94A;
 }
 
 body {
-  background: var(--bg);
+  background: var(--bg-grad);
   color: var(--text);
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -70,7 +96,7 @@ textarea {
 
 input:not([type="color"]):not([type="range"]):not([type="file"]):focus,
 textarea:focus {
-  border-color: rgba(166, 255, 62, 0.5);
+  border-color: rgba(255, 138, 30, 0.5);
 }
 
 input::placeholder, textarea::placeholder {
@@ -91,8 +117,8 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 14px; height: 14px;
-  background: #A6FF3E;
-  border: 2px solid #161618;
+  background: var(--accent);
+  border: 2px solid var(--bg);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.3);
@@ -104,8 +130,8 @@ input[type="range"]::-moz-range-track {
 }
 input[type="range"]::-moz-range-thumb {
   width: 14px; height: 14px;
-  background: #A6FF3E;
-  border: 2px solid #161618;
+  background: var(--accent);
+  border: 2px solid var(--bg);
   border-radius: 50%;
   cursor: pointer;
 }

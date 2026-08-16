@@ -10,7 +10,7 @@ export interface Settings {
 
 const DEFAULTS: Settings = {
   geminiApiKey: '',
-  geminiModel: 'imagen-3.0-fast-generate-001', // Imagen 3 Fast — padrão
+  geminiModel: 'gemini-2.5-flash-image', // modelo atual do Google pra imagem — Imagen 3/4 e o Gemini 2.0 Flash foram descontinuados
 }
 
 export function getSettings(): Settings {

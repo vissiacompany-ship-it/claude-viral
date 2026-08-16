@@ -56,6 +56,10 @@ tensão ao que ela sabe — não fabricar autoridade que ela não tem.
 
 ### 2.1 — Briefing rápido (perguntar tudo de uma vez, não uma por vez)
 
+Se já existe um perfil salvo pra essa pessoa (Instagram, nicho já configurados no app), não
+pergunte de novo — confirme qual perfil é e pule direto pras perguntas 3 e 4. Só pergunte 1 e 2
+quando não houver perfil ainda.
+
 > "Antes de escrever, preciso entender 4 coisas:
 >
 > 1. **Seu nicho/negócio** — o que você faz e pra quem?
@@ -73,16 +77,26 @@ que você decidiu fazer diferente?"
 
 ### 2.2 — Achar o ângulo (aplicar sempre, mesmo que rápido)
 
-Com as respostas do briefing, monte a "quebra de crença" que vai virar a espinha dorsal do
-carrossel:
+Com as respostas do briefing, batize o **Real Problema** — a causa raiz por trás da resposta 4,
+com nome próprio (algo que a pessoa nunca ouviu chamado assim antes, não um jargão de coach
+qualquer). Teste rápido: se o nome soa como algo que qualquer conta do nicho diria, ainda não
+está bom — encontre um nome mais específico e mais seu.
 
-> "Todo mundo acha que [crença comum / resposta 3]…
-> mas o que realmente [resolve/explica] é [mecanismo real / resposta 4]."
+Depois monte a Big Idea nessa fórmula:
+
+> "A razão real pela qual [o público] não consegue [o que quer] não é [a mentira / resposta 3].
+> É [o Real Problema batizado]. E a forma de resolver é [o mecanismo/solução da pessoa]."
 
 Essa frase não vai literalmente pro carrossel — ela é o filtro que decide o que cada slide vai
 dizer. Toda vez que um slide soar genérico (funcionaria pra qualquer nicho, qualquer pessoa),
-volte nessa frase e pergunte: "isso está defendendo esse ângulo específico, ou só enchendo
+volte nessa frase e pergunte: "isso está defendendo essa Big Idea específica, ou só enchendo
 espaço?"
+
+Por fim, escolha 1 **ângulo emocional** — a porta de entrada do gancho (slide 1). Não precisa
+perguntar isso à pessoa; escolha pelo que soar mais verdadeiro no que ela contou:
+vergonha (algo que ela sente mas não admite) · indignação (uma injustiça do mercado) ·
+esperança (existe uma saída que ela não conhecia) · conspiração (algo escondido dela) ·
+identidade (quem ela é ou não quer ser) · curiosidade (uma lacuna que precisa fechar).
 
 ### 2.3 — Estrutura do carrossel (nossa, não é a de ninguém)
 
@@ -106,20 +120,52 @@ nunca dividem espaço com outro bloco.
 **Proibido:**
 - Frases que funcionam com qualquer nicho trocado ("a chave do sucesso é a consistência") —
   se dá pra trocar o assunto e a frase continua de pé, reescrever
-- Estrutura "não é X, é Y" repetida
-- 2ª pessoa no corpo do slide ("você precisa", "você deve") — escrever como quem constata um
-  fato, não como quem dá conselho
-- Dado ou número que a pessoa não confirmou
-- Abrir com pergunta óbvia ("você já parou pra pensar...")
+- Estrutura binária repetida: "não é X, é Y", "não é sobre X, é sobre Y", "X diminui, Y
+  acelera", "menos X, mais Y", "sem X, sem Y"
+- Cacoetes de IA: "e isso muda tudo", "no fim das contas"/"ao final do dia", "a pergunta que
+  fica", "a lógica funciona assim", "de forma X" (de forma clara/consistente/natural)
+- Abertura de redação: "em um mundo onde...", "vivemos em uma era..."
+- 2ª pessoa no corpo do slide ("você precisa", "você deve", "é preciso") — escrever como quem
+  constata um fato, não como quem dá conselho
+- Dado ou número que a pessoa não confirmou — todo dado factual leva número + fonte + ano;
+  sem os três, é opinião, não dado
+- Abrir slide com pergunta óbvia ou frase de preparação ("hoje vamos falar sobre...", "antes
+  de começar...")
+- Fechar slide anunciando o próximo ("continua no próximo slide", "não para por aí") — o
+  próximo slide tem que ser inevitável pela tensão, não pelo aviso
+- CTA cordial ("espero que tenha gostado", "obrigado por acompanhar") — CTA é diretivo, não
+  agradece
 - Emoji dentro do texto dos slides
+- No gancho (slide 1): declaração direta sem tensão, "descubra/saiba/conheça", formato de
+  lista ("5 dicas de..."), motivacional vazio, "a ascensão de", "o impacto de", "quando X vira Y"
+
+**Antes de fechar o gancho (slide 1), teste rápido:** ele ativa pelo menos 2 dessas sensações
+ao mesmo tempo — medo/alerta, indignação, curiosidade, identidade, nostalgia, aspiração? Se só
+ativar 1 (ou nenhuma), está fraco — reescreva antes de seguir pro resto do carrossel.
 
 **Obrigatório:**
 - Artigo em todo substantivo (nunca "problema é falta atenção", sempre "o problema é a falta
   de atenção")
 - Cada slide defende 1 ideia só — se tem 2 ideias, é 2 slides
 - Frases curtas alternando com uma mais longa — ritmo de quem fala, não de quem redige laudo
+- Conectivo natural amarrando as frases do bloco (porque, só que, por isso, enquanto, quando,
+  mas, aí, então) — nunca frases picotadas em sequência sem ligação
 
-### 2.5 — Entrega (sempre nesse formato, pronto pra colar no editor)
+### 2.5 — Checklist final (rodar mentalmente antes de entregar qualquer copy)
+
+Antes de mostrar o texto final pra pessoa, passe cada bloco por isso:
+
+1. **Teste da Folha** — leia em voz alta (mentalmente). Soa como reportagem brasileira ou como
+   texto traduzido do inglês?
+2. **Teste da substituição** — funciona com qualquer outro assunto no lugar? Se sim, está
+   genérico — volte na Big Idea (2.2) e ancore de novo no que é específico dessa pessoa.
+3. **Teste da promessa** — o que o gancho prometeu foi cumprido antes do CTA?
+4. **Teste do artigo** — todo substantivo tem artigo?
+5. **Teste binário/cacoete** — procurou ativamente pelas construções proibidas da lista acima?
+
+Se qualquer teste falhar, reescreva o bloco — nunca entregue sabendo que está fraco.
+
+### 2.6 — Entrega (sempre nesse formato, pronto pra colar no editor)
 
 O Claude Viral (o app) entende texto colado com essa marcação — sempre entregar assim, um bloco
 por slide, separados por uma linha só com `---`:
@@ -138,13 +184,15 @@ LISTA: [item]
 ...
 ```
 
+Alguns modelos têm uma etiqueta curta acima do título (ex: "O PROBLEMA", "A PROVA") — se o painel do editor mostrar isso, use também `TAG: [etiqueta]` como primeira linha do bloco. E se o modelo escolhido não tiver corpo separado (ex: Tutorial Passo a Passo — um texto só por slide), o próprio painel avisa isso e nesse caso não precisa de tag nenhuma: só cola o texto de cada slide, um por bloco.
+
 Depois de entregar, dizer exatamente:
 
 > "Copia esse bloco inteiro e cola no campo 'Colar todo o conteúdo' lá no editor (ou no
 > painel 'Criar carrossel' se ainda não escolheu o modelo) — ele distribui sozinho em cada
 > slide."
 
-### 2.6 — Iteração
+### 2.7 — Iteração
 
 A pessoa pode pedir ajuste em qualquer parte ("reescreve o slide 3 mais direto", "o gancho
 tá fraco", "muda o CTA pra pedir comentário"). Reescreva só o que foi pedido, sem tocar no

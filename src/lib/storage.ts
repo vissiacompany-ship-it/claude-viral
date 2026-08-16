@@ -1,11 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import { Profile, Carousel, CarouselTemplate } from '@/types'
+import { Profile, Carousel, CarouselTemplate, ChatConversation } from '@/types'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
 const PROFILES_FILE = path.join(DATA_DIR, 'profiles.json')
 const CAROUSELS_FILE = path.join(DATA_DIR, 'carousels.json')
 const TEMPLATES_FILE = path.join(DATA_DIR, 'templates.json')
+const CHATS_FILE = path.join(DATA_DIR, 'chat-conversations.json')
 
 function ensureDataDir() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true })
@@ -85,4 +86,26 @@ export function saveTemplate(template: CarouselTemplate): void {
 export function deleteTemplate(id: string): void {
   const templates = getTemplates().filter(t => t.id !== id)
   writeJSON(TEMPLATES_FILE, templates)
+}
+
+// Conversas do Chat (histórico — salvar e continuar depois)
+export function getChatConversations(): ChatConversation[] {
+  return readJSON<ChatConversation[]>(CHATS_FILE, [])
+}
+
+export function getChatConversation(id: string): ChatConversation | null {
+  return getChatConversations().find(c => c.id === id) ?? null
+}
+
+export function saveChatConversation(conversation: ChatConversation): void {
+  const conversations = getChatConversations()
+  const idx = conversations.findIndex(c => c.id === conversation.id)
+  if (idx >= 0) conversations[idx] = conversation
+  else conversations.unshift(conversation)
+  writeJSON(CHATS_FILE, conversations)
+}
+
+export function deleteChatConversation(id: string): void {
+  const conversations = getChatConversations().filter(c => c.id !== id)
+  writeJSON(CHATS_FILE, conversations)
 }

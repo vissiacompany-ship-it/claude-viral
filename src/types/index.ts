@@ -8,6 +8,7 @@ export interface Profile {
   contentType: string
   extraInstructions: string
   primaryColor: string
+  primaryColors?: string[] // 2 a 4 entradas = degradê; ausente/1 entrada = usa primaryColor (sólida)
   logo?: string
   brandText?: string
   brandPosition?: 'tl' | 'tr' | 'bl' | 'br'
@@ -19,12 +20,13 @@ export type VisualStyle = 'minimal' | 'profile' | 'creators' | 'techviral'
 export type CarouselType = 'tendencia' | 'tese' | 'case' | 'previsao'
 export type SlideCount = 5 | 7 | 9 | 12
 export type SlideBackground = 'dark' | 'light' | 'gradient' | 'cover'
-export type SlideStyle = 'classic' | 'editorial-serif' | 'bold-sans'
+export type SlideStyle = 'classic' | 'editorial-serif' | 'bold-sans' | 'step-guide' | 'photo-block'
 export type ImageLayout = 'none' | 'top' | 'bottom' | 'double-bottom' | 'triple-top'
 
 export interface SlideHighlight {
   word: string
   color: string
+  colors?: string[] // 2 a 4 entradas = degradê no texto; ausente/1 entrada = usa color (sólida)
   fontFamily?: string
   underline?: boolean
   italic?: boolean
@@ -70,6 +72,7 @@ export interface Slide {
   handleSize?: number
   handleColor?: string
   images?: string[] // base64, usado quando imageLayout precisa de mais de 1 imagem
+  hideImage?: boolean // remove o bloco/card de imagem inteiro desse slide, mesmo o template tendo imagem por padrão
   imageZooms?: number[]
   imagePositions?: { x: number; y: number }[]
   imageMirrors?: boolean[]
@@ -96,7 +99,9 @@ export interface CarouselBriefing {
   mode: 'content' | 'insight'
   input: string
   niche: string
+  displayName?: string
   primaryColor: string
+  primaryColors?: string[] // 2 a 4 entradas = degradê; ausente/1 entrada = usa primaryColor (sólida)
   visualStyle: VisualStyle
   carouselType: CarouselType
   cta: string
@@ -112,6 +117,11 @@ export interface CarouselBriefing {
   verifiedBadge?: boolean
   brandText?: string
   brandPosition?: 'tl' | 'tr' | 'bl' | 'br'
+  brandTextColor?: string
+  brandTextSize?: number
+  brandTextFont?: string
+  dotSize?: number
+  dotsVisible?: boolean
 }
 
 export interface CarouselContent {
@@ -177,6 +187,7 @@ export interface SlideTemplateDef {
   defaultBlockGap?: number
   defaultBodyWeight?: number
   defaultBodyLineHeight?: number
+  defaultImageHeight?: number
 }
 
 export interface CarouselTemplate {
@@ -186,6 +197,16 @@ export interface CarouselTemplate {
   thumbnail?: string
   slides: SlideTemplateDef[]
   createdAt: string
+}
+
+export interface ChatConversation {
+  id: string
+  title: string
+  skill: 'copy' | 'ideias' | 'geral'
+  profileId?: string
+  messages: Array<{ role: 'user' | 'assistant'; content: string }>
+  createdAt: string
+  updatedAt: string
 }
 
 export type WizardStep =

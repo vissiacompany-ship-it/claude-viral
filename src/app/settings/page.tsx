@@ -3,32 +3,24 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Eye, EyeOff, Check, Settings, Zap } from 'lucide-react'
+import Sidebar from '@/components/Sidebar'
 
+// Imagen 3/4 e o Gemini 2.0 Flash foram descontinuados pelo Google (Gemini 2.0 Flash
+// desligado em jun/2026, Imagen 4 desliga em 17/08/2026) — só oferecemos aqui o modelo
+// atual que continua ativo. ~$0,039 por imagem.
 const GEMINI_MODELS = [
   {
-    value: 'imagen-3.0-fast-generate-001',
-    label: 'Imagen 3 Fast',
-    desc: 'Rápido e econômico. Ideal para uso diário e testes de composição.',
+    value: 'gemini-2.5-flash-image',
+    label: 'Gemini 2.5 Flash Image',
+    desc: 'Modelo atual do Google pra geração de imagem. Rápido e com bom custo-benefício.',
     badge: 'Recomendado',
-  },
-  {
-    value: 'imagen-3.0-generate-001',
-    label: 'Imagen 3',
-    desc: 'Qualidade máxima, mais lento. Use para as imagens finais de publicação.',
-    badge: 'Alta qualidade',
-  },
-  {
-    value: 'gemini-2.0-flash-exp',
-    label: 'Gemini 2.0 Flash',
-    desc: 'Modelo multimodal experimental. Gera imagem via texto com contexto narrativo.',
-    badge: 'Experimental',
   },
 ]
 
 export default function SettingsPage() {
   const [apiKey, setApiKey] = useState('')
   const [savedKey, setSavedKey] = useState('')
-  const [model, setModel] = useState('imagen-3.0-fast-generate-001')
+  const [model, setModel] = useState('gemini-2.5-flash-image')
   const [showKey, setShowKey] = useState(false)
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -36,7 +28,7 @@ export default function SettingsPage() {
   useEffect(() => {
     fetch('/api/settings').then(r => r.json()).then((data: { geminiApiKeyMasked: string; geminiModel: string }) => {
       setSavedKey(data.geminiApiKeyMasked || '')
-      setModel(data.geminiModel || 'imagen-3.0-fast-generate-001')
+      setModel(data.geminiModel || 'gemini-2.5-flash-image')
       setLoading(false)
     })
   }, [])
@@ -60,7 +52,9 @@ export default function SettingsPage() {
   if (loading) return null
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen flex" style={{ background: 'var(--bo-paper)', color: 'var(--bo-ink)' }}>
+      <Sidebar active="settings"/>
+      <main className="flex-1 overflow-auto p-8">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center gap-4 mb-8">
           <Link href="/">
@@ -77,7 +71,7 @@ export default function SettingsPage() {
         {/* Gemini section */}
         <div className="rounded-2xl p-6 mb-5" style={{ background: 'var(--bg2)', border: '1px solid var(--border)' }}>
           <div className="flex items-center gap-2 mb-5">
-            <Zap size={16} style={{ color: '#e8421a' }}/>
+            <Zap size={16} style={{ color: 'var(--accent2)' }}/>
             <h2 className="font-bold">Google Gemini — Geração de Imagens</h2>
           </div>
 
@@ -117,13 +111,13 @@ export default function SettingsPage() {
               {GEMINI_MODELS.map(m => (
                 <button key={m.value} onClick={() => setModel(m.value)} className="w-full p-4 rounded-xl text-left transition-all"
                   style={model === m.value
-                    ? { background: 'rgba(166,255,62,0.08)', border: '2px solid var(--accent)' }
+                    ? { background: 'rgba(255,138,30,0.1)', border: '2px solid var(--accent)' }
                     : { background: 'var(--bg3)', border: '2px solid transparent' }}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-sm">{m.label}</span>
                     <span className="text-xs px-2 py-0.5 rounded-full" style={{
-                      background: m.badge === 'Recomendado' ? 'rgba(232,66,26,0.15)' : 'var(--bg2)',
-                      color: m.badge === 'Recomendado' ? '#e8421a' : 'var(--muted)'
+                      background: m.badge === 'Recomendado' ? 'rgba(255,138,30,0.16)' : 'var(--bg2)',
+                      color: m.badge === 'Recomendado' ? 'var(--accent2)' : 'var(--muted)'
                     }}>{m.badge}</span>
                   </div>
                   <p className="text-xs" style={{ color: 'var(--muted)' }}>{m.desc}</p>
@@ -150,6 +144,7 @@ export default function SettingsPage() {
           {saved ? <><Check size={16}/> Salvo!</> : 'Salvar configurações'}
         </button>
       </div>
+      </main>
     </div>
   )
 }

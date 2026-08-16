@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
     contentType: body.contentType || '',
     extraInstructions: body.extraInstructions || '',
     primaryColor: body.primaryColor || '#E8421A',
+    primaryColors: body.primaryColors,
     logo: body.logo,
     brandText: body.brandText,
     brandPosition: body.brandPosition,

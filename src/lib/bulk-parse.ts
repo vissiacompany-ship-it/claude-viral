@@ -1,12 +1,12 @@
 // Parser compartilhado do "colar conteúdo em bloco" — usado tanto no painel de colagem
 // dentro do editor quanto no wizard "Criar carrossel". Cola um texto único com os N blocos
-// separados por uma linha "---". Cada linha pode vir marcada com TITULO: / SUBTITULO: /
-// TEXTO: / LISTA: pra dizer que elemento ela é, sem precisar reescrever a copy. Se o bloco
+// separados por uma linha "---". Cada linha pode vir marcada com TAG: / TITULO: / SUBTITULO:
+// / TEXTO: / LISTA: pra dizer que elemento ela é, sem precisar reescrever a copy. Se o bloco
 // não tiver nenhuma tag, cai no modo antigo: primeira linha = título, resto = corpo.
 
-export const TAG_RE = /^(TITULO|SUBTITULO|TEXTO|LISTA)\s*:\s?(.*)$/i
+export const TAG_RE = /^(TAG|TITULO|SUBTITULO|TEXTO|LISTA)\s*:\s?(.*)$/i
 
-export function parseBloco(bloco: string): { title: string; subtitle: string; body: string } {
+export function parseBloco(bloco: string): { tag: string; title: string; subtitle: string; body: string } {
   const linhasRaw = bloco.split('\n')
   const temTag = linhasRaw.some(l => TAG_RE.test(l.trim()))
   if (!temTag) {
@@ -15,9 +15,9 @@ export function parseBloco(bloco: string): { title: string; subtitle: string; bo
     const primeiraRaw = (linhas[0] || '').trim()
     const primeira = primeiraRaw.replace(/^\*\*(.*)\*\*$/, '$1')
     const resto = linhas.slice(1).join('\n').trim()
-    return { title: primeira, subtitle: '', body: resto }
+    return { tag: '', title: primeira, subtitle: '', body: resto }
   }
-  let title = '', subtitle = ''
+  let tag = '', title = '', subtitle = ''
   const paragrafos: string[] = []
   let listaAtual: string[] = []
   const flushLista = () => {
@@ -30,14 +30,15 @@ export function parseBloco(bloco: string): { title: string; subtitle: string; bo
       const tipo = m[1].toUpperCase()
       const conteudo = m[2].trim()
       if (tipo !== 'LISTA') flushLista()
-      if (tipo === 'TITULO') title = conteudo
+      if (tipo === 'TAG') tag = conteudo
+      else if (tipo === 'TITULO') title = conteudo
       else if (tipo === 'SUBTITULO') subtitle = conteudo
       else if (tipo === 'TEXTO') { if (conteudo) paragrafos.push(conteudo) }
       else if (tipo === 'LISTA') { if (conteudo) listaAtual.push(conteudo) }
     }
   }
   flushLista()
-  return { title, subtitle, body: paragrafos.join('\n\n') }
+  return { tag, title, subtitle, body: paragrafos.join('\n\n') }
 }
 
 // Se colou com "---" separando os slides, usa isso (funciona mesmo com parágrafo em
@@ -48,4 +49,32 @@ export function splitBlocos(text: string): string[] {
   return (temSeparador ? text.split(/\n\s*---\s*\n/) : text.split(/\n{2,}/))
     .map(b => b.trim())
     .filter(Boolean)
+}
+
+interface DefLike { hasTag: boolean; hasBody: boolean }
+
+// Orientação de colagem específica de CADA template — usada tanto no painel "Colar todo
+// o conteúdo" do editor quanto no wizard "Criar carrossel", pra nunca mais os dois saírem
+// dessincronizados (um mostrando a orientação certa, o outro a genérica de outro modelo).
+// O texto devolvido também serve pra colar em qualquer IA externa gerar no formato certo.
+export function bulkInstructions(defs: DefLike[]): { hint: string; placeholder: string } {
+  const semCorpo = defs.every(d => !d.hasBody)
+  const comTag = defs.some(d => d.hasTag)
+
+  if (semCorpo) {
+    return {
+      hint: 'Cola os blocos separados por uma linha só com --- . Esse modelo não tem corpo separado — é só um texto por slide (pode ter quebra de linha), sem precisar de tag nenhuma.',
+      placeholder: 'Texto do slide 1, pode ter mais de uma linha se quiser.\n---\nTexto do slide 2.\n---\n...',
+    }
+  }
+  if (comTag) {
+    return {
+      hint: 'Cola os blocos separados por uma linha só com --- . Marca cada linha com TAG:, TITULO:, SUBTITULO:, TEXTO: ou LISTA: — esse modelo usa uma etiqueta curta (TAG) acima do título em cada slide.',
+      placeholder: 'TAG: Categoria do slide 1\nTITULO: Headline do slide 1\nTEXTO: Primeiro parágrafo\n---\nTAG: Categoria do slide 2\nTITULO: Headline do slide 2\nLISTA: Item um\nLISTA: Item dois\n---\n...',
+    }
+  }
+  return {
+    hint: 'Cola o conteúdo de todos os slides de uma vez, separando cada slide com uma linha só com --- . Marca cada linha com TITULO:, SUBTITULO:, TEXTO: ou LISTA: (sem tag nenhuma, a 1ª linha do bloco vira título e o resto vira corpo).',
+    placeholder: 'TITULO: Headline do slide 1\nTEXTO: Primeiro parágrafo\n---\nTITULO: Headline do slide 2\nLISTA: Item um\nLISTA: Item dois\n---\n...',
+  }
 }

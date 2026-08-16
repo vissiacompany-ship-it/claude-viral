@@ -239,5 +239,177 @@
       }
     ],
     "createdAt": "2026-08-14T00:00:00.000Z"
+  },
+  {
+    "id": "step-guide-6",
+    "name": "Tutorial Passo a Passo",
+    "description": "Fundo branco, avatar+handle fixo no topo, títulos tipo \"Etapa 1)\", corpo direto e card com screenshot — ideal pra ensinar algo com prints (ferramentas, apps, processos).",
+    "slides": [
+      {
+        "background": "light",
+        "style": "step-guide",
+        "label": "1 · Capa",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "defaultTitleSize": 46,
+        "imageLayout": "bottom",
+        "defaultMarginH": 80,
+        "defaultBlockGap": 20,
+        "defaultTitleWeight": 400,
+        "defaultTitleLineHeight": 1.6,
+        "defaultImageHeight": 600
+      },
+      {
+        "background": "light",
+        "style": "step-guide",
+        "label": "2 · Etapa (com print)",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "bottom",
+        "defaultMarginH": 80,
+        "defaultBlockGap": 20,
+        "defaultTitleSize": 46,
+        "defaultTitleWeight": 400,
+        "defaultTitleLineHeight": 1.6,
+        "defaultImageHeight": 600
+      },
+      {
+        "background": "light",
+        "style": "step-guide",
+        "label": "3 · Etapa (com print)",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "bottom",
+        "defaultMarginH": 80,
+        "defaultBlockGap": 20,
+        "defaultTitleSize": 46,
+        "defaultTitleWeight": 400,
+        "defaultTitleLineHeight": 1.6,
+        "defaultImageHeight": 600
+      },
+      {
+        "background": "light",
+        "style": "step-guide",
+        "label": "4 · Etapa (com print)",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": true,
+        "defaultTextAnchor": "center",
+        "imageLayout": "bottom",
+        "defaultMarginH": 80,
+        "defaultBlockGap": 20,
+        "defaultTitleSize": 46,
+        "defaultTitleWeight": 400,
+        "defaultTitleLineHeight": 1.6,
+        "defaultImageHeight": 600
+      },
+      {
+        "background": "light",
+        "style": "step-guide",
+        "label": "5 · Etapa final (sem print)",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": false,
+        "defaultTextAnchor": "center",
+        "defaultMarginH": 80,
+        "defaultBlockGap": 20,
+        "defaultTitleSize": 46,
+        "defaultTitleWeight": 400,
+        "defaultTitleLineHeight": 1.6
+      },
+      {
+        "background": "light",
+        "style": "step-guide",
+        "label": "6 · CTA final",
+        "hasTag": false,
+        "hasBody": false,
+        "hasImage": false,
+        "defaultTextAnchor": "center",
+        "defaultMarginH": 80,
+        "defaultBlockGap": 20,
+        "defaultTitleSize": 46,
+        "defaultTitleWeight": 400,
+        "defaultTitleLineHeight": 1.6
+      }
+    ],
+    "createdAt": "2026-08-15T00:00:00.000Z"
+  },
+  {
+    "id": "photo-block-8",
+    "name": "Foto & Bloco de Cor",
+    "description": "Foto no topo + bloco de cor sólida embaixo (alterna escuro/claro a cada slide), título condensado bold, linha divisória e corpo direto. Ótimo pra conteúdo educativo/autoridade com fotos reais.",
+    "slides": [
+      {
+        "background": "dark",
+        "style": "photo-block",
+        "label": "1 · Escuro (foto + bloco)",
+        "hasTag": true,
+        "hasBody": true,
+        "hasImage": true
+      },
+      {
+        "background": "light",
+        "style": "photo-block",
+        "label": "2 · Claro (foto + bloco)",
+        "hasTag": true,
+        "hasBody": true,
+        "hasImage": true
+      },
+      {
+        "background": "dark",
+        "style": "photo-block",
+        "label": "3 · Escuro (foto + bloco)",
+        "hasTag": true,
+        "hasBody": true,
+        "hasImage": true
+      },
+      {
+        "background": "light",
+        "style": "photo-block",
+        "label": "4 · Claro (foto + bloco)",
+        "hasTag": true,
+        "hasBody": true,
+        "hasImage": true
+      },
+      {
+        "background": "dark",
+        "style": "photo-block",
+        "label": "5 · Escuro (foto + bloco)",
+        "hasTag": true,
+        "hasBody": true,
+        "hasImage": true
+      },
+      {
+        "background": "light",
+        "style": "photo-block",
+        "label": "6 · Claro (foto + bloco)",
+        "hasTag": true,
+        "hasBody": true,
+        "hasImage": true
+      },
+      {
+        "background": "dark",
+        "style": "photo-block",
+        "label": "7 · Escuro (foto + bloco)",
+        "hasTag": true,
+        "hasBody": true,
+        "hasImage": true
+      },
+      {
+        "background": "light",
+        "style": "photo-block",
+        "label": "8 · Claro (foto + bloco)",
+        "hasTag": true,
+        "hasBody": true,
+        "hasImage": true
+      }
+    ],
+    "createdAt": "2026-08-15T00:00:00.000Z"
   }
 ]
