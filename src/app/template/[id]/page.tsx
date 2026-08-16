@@ -184,7 +184,7 @@ export default function TemplateFillPage() {
   const [switchPickerOpen, setSwitchPickerOpen] = useState(false)
   const [previewZoom, setPreviewZoom] = useState(100)
   const [loading, setLoading] = useState(true)
-  const [handle, setHandle] = useState('eusoupaulofigueirdo')
+  const [handle, setHandle] = useState('')
   // Nome de exibição opcional (estilo X/Twitter: nome em negrito + @arroba embaixo, cinza).
   // Vazio = header mostra só o @arroba, como sempre foi.
   const [displayName, setDisplayName] = useState('')

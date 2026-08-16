@@ -114,7 +114,7 @@ export default function ChatAssistant({ onUseContent }: { onUseContent?: (text: 
   }
 
   // Tenta reconhecer o perfil pelo nome dentro do que a pessoa acabou de digitar (ex:
-  // "é o Paulo Figueiredo" ou só "Paulo Figueiredo") — sem exigir seleção numa lista à parte.
+  // "é o perfil da Marca X" ou só "Marca X") — sem exigir seleção numa lista à parte.
   const resolveProfileFromText = (text: string): Profile | undefined => {
     const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
     const t = norm(text)

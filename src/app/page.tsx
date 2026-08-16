@@ -45,7 +45,7 @@ export default function Dashboard() {
       {/* Main */}
       <main className="flex-1 overflow-auto">
         <div className="px-8 pt-6 pb-5" style={{ borderBottom: '1px solid var(--bo-hairline)' }}>
-          <h1 className="text-xl font-bold tracking-[-0.01em] mb-1">Olá, Paulo</h1>
+          <h1 className="text-xl font-bold tracking-[-0.01em] mb-1">Olá!</h1>
           <p className="text-[12px]" style={{ color: 'var(--bo-graphite)' }}>Vamos criar conteúdo viral hoje?</p>
         </div>
 
