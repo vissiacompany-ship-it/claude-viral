@@ -6,6 +6,40 @@ Claude Pro, sem servidor externo, sem limite de uso.
 
 ---
 
+## O que é
+
+O Claude Viral transforma uma ideia solta (ou um conteúdo que você já tem) num carrossel
+pronto pra postar — capa, texto de cada slide, imagem e legenda — sem precisar saber
+programar, escrever prompt, nem abrir uma ferramenta de design. Você conversa em português
+com uma IA que já sabe a estrutura de um carrossel que prende (gancho, tensão, virada, prova,
+aplicação, CTA) e entrega o texto pronto; o editor visual cuida do resto.
+
+## Como funciona
+
+1. **Converse** — no chat, conte seu nicho, o que quer dizer, e a IA monta a copy completa do
+   carrossel, slide por slide.
+2. **Criar carrossel** — um clique já distribui o texto no modelo visual e te leva pro editor.
+3. **Gerar imagens** — um clique gera (com IA) ou você sobe as fotos de cada slide.
+4. **Baixar** — um clique exporta tudo pronto pra postar no Instagram.
+
+## O que tem
+
+- **4 templates visuais prontos** — editorial/foto, frase de impacto, tutorial passo a passo,
+  foto + bloco de cor — cada um com paleta, fonte e layout ajustáveis
+- **Motor de copy** — gera o texto de cada slide a partir de uma conversa, aplicando um
+  checklist de qualidade editorial (nada de frase genérica ou "cara de IA")
+- **Chat com histórico** — salva e retoma conversas anteriores, sem perder contexto
+- **Geração de imagem por IA** — prompt e imagem gerados automaticamente por slide, ou upload
+  manual se preferir
+- **Editor visual completo** — cores (com conta-gotas), fontes, destaque de palavra/frase,
+  posição de imagem, tudo ajustável sem código
+- **Perfis de marca** — salve cor, fonte, logo e handle uma vez e reaproveite em todo carrossel
+- **Preview do Instagram** — veja o carrossel exatamente como vai aparecer no feed antes de
+  postar
+- **Exportação em PNG** — pronto pra subir direto no Instagram
+
+---
+
 ## O que você precisa
 
 1. **Um computador** (Windows, Mac ou Linux)
