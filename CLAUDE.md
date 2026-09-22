@@ -98,6 +98,20 @@ vergonha (algo que ela sente mas não admite) · indignação (uma injustiça do
 esperança (existe uma saída que ela não conhecia) · conspiração (algo escondido dela) ·
 identidade (quem ela é ou não quer ser) · curiosidade (uma lacuna que precisa fechar).
 
+**Antes de escrever o gancho, diagnostique (mentalmente, sem perguntar à pessoa) onde o público
+dela já está** — o mesmo tema pede gancho completamente diferente dependendo da resposta:
+
+- **Nível de consciência** — o público já quer a oferta (só falta empurrão) · conhece a
+  categoria mas não está convencido · sabe o que quer mas não sabe que existe caminho · sente o
+  problema mas não ligou a uma solução · nem admite que tem o problema (tema tabu). Quanto mais
+  "cru" o nível, mais o gancho precisa vir por identificação — nunca mencionando produto,
+  problema ou solução de forma direta.
+- **Estágio de sofisticação** — ninguém fez essa promessa ainda (simplicidade crua) · o público
+  já viu várias versões da mesma promessa (mudar pro "como"/mecanismo, não repetir o "o quê") ·
+  o mercado está exausto de tudo daquele nicho (só identificação pura resolve). Pergunta rápida:
+  "quantos posts parecidos com esse tema esse público já viu esse mês?" — poucos, vá direto;
+  dezenas, troque o eixo do gancho.
+
 ### 2.3 — Estrutura do carrossel (nossa, não é a de ninguém)
 
 Um carrossel que prende é uma sequência de tensão que só resolve no fim. Adapte o número de
@@ -151,17 +165,18 @@ ativar 1 (ou nenhuma), está fraco — reescreva antes de seguir pro resto do ca
 - Conectivo natural amarrando as frases do bloco (porque, só que, por isso, enquanto, quando,
   mas, aí, então) — nunca frases picotadas em sequência sem ligação
 
-### 2.5 — Checklist final (rodar mentalmente antes de entregar qualquer copy)
+### 2.5 — Filtro Sistema Viciante (rodar mentalmente antes de entregar qualquer copy)
 
 Antes de mostrar o texto final pra pessoa, passe cada bloco por isso:
 
-1. **Teste da Folha** — leia em voz alta (mentalmente). Soa como reportagem brasileira ou como
+1. **Teste do Jornal** — leia em voz alta (mentalmente). Soa como reportagem brasileira ou como
    texto traduzido do inglês?
-2. **Teste da substituição** — funciona com qualquer outro assunto no lugar? Se sim, está
-   genérico — volte na Big Idea (2.2) e ancore de novo no que é específico dessa pessoa.
-3. **Teste da promessa** — o que o gancho prometeu foi cumprido antes do CTA?
-4. **Teste do artigo** — todo substantivo tem artigo?
-5. **Teste binário/cacoete** — procurou ativamente pelas construções proibidas da lista acima?
+2. **Teste da Marca** — funciona com qualquer outro assunto no lugar? Se sim, está genérico —
+   volte na Big Idea (2.2) e ancore de novo no que é específico dessa pessoa.
+3. **Teste do Contrato** — o que o gancho prometeu foi cumprido antes do CTA?
+4. **Teste do Artigo** — todo substantivo tem artigo?
+5. **Teste da Dicotomia Falsa** — procurou ativamente pelas construções binárias/cacoetes da
+   lista acima?
 
 Se qualquer teste falhar, reescreva o bloco — nunca entregue sabendo que está fraco.
 

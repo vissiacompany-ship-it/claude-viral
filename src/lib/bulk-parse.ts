@@ -78,3 +78,36 @@ export function bulkInstructions(defs: DefLike[]): { hint: string; placeholder: 
     placeholder: 'TITULO: Headline do slide 1\nTEXTO: Primeiro parágrafo\n---\nTITULO: Headline do slide 2\nLISTA: Item um\nLISTA: Item dois\n---\n...',
   }
 }
+
+// Caminho inverso do parseBloco: junta o conteúdo ATUAL dos campos de volta no formato
+// TAG:/TITULO:/SUBTITULO:/TEXTO:, blocos separados por "---" — usado pra mandar o carrossel
+// inteiro (como está agora) de contexto pra IA reescrever do zero (ver /api/ai/adjust-narrative
+// e o botão "Refazer copy do carrossel" no editor). Não precisa ser perfeito byte a byte (é
+// só contexto de entrada, a IA reescreve em cima), então body é quebrado por parágrafo (\n\n)
+// em várias linhas TEXTO: — cada uma vira 1 parágrafo de novo do outro lado.
+export function fieldsToBulkText(items: Array<{ tag?: string; title?: string; subtitle?: string; body?: string }>): string {
+  return items.map(({ tag, title, subtitle, body }) => {
+    const lines: string[] = []
+    if (tag?.trim()) lines.push(`TAG: ${tag.trim()}`)
+    if (title?.trim()) lines.push(`TITULO: ${title.trim()}`)
+    if (subtitle?.trim()) lines.push(`SUBTITULO: ${subtitle.trim()}`)
+    body?.split(/\n{2,}/).map(p => p.trim()).filter(Boolean).forEach(p => lines.push(`TEXTO: ${p}`))
+    return lines.join('\n')
+  }).join('\n---\n')
+}
+
+// Prompt pronto pra copiar e colar em QUALQUER outra IA (ChatGPT, Gemini etc.) — pra quem
+// prefere escrever a copy fora do Claude Viral e só trazer o resultado já pronto pra colar
+// no campo de conteúdo. Reaproveita a mesma orientação de formato do bulkInstructions, pra
+// nunca ficar dessincronizado com o que o parser realmente espera.
+export function externalAIPrompt(defs: DefLike[], slideCount: number): string {
+  const { hint, placeholder } = bulkInstructions(defs)
+  return `Escreva o texto completo de um carrossel de Instagram com ${slideCount} slides — tom direto, jornalístico, sem clichê de IA (nada de "não é X, é Y", "e isso muda tudo", frase genérica que serviria pra qualquer assunto). Cada slide defende só 1 ideia.
+
+${hint}
+
+Formato exato a seguir (mantenha a estrutura, troque só o conteúdo):
+${placeholder}
+
+Agora escreva sobre: [DESCREVA AQUI O TEMA, OU COLE SEU MATERIAL BRUTO]`
+}

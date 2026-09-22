@@ -1,30 +1,55 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Carousel, Profile } from '@/types'
+import { Carousel, Profile, CarouselTemplate } from '@/types'
 import { LayoutGrid, Plus, User } from 'lucide-react'
 import CreateCarouselModal from '@/components/CreateCarouselModal'
 import Sidebar from '@/components/Sidebar'
 import { CarouselCard, SkeletonCard } from '@/components/CarouselCard'
+import { CarouselSortOrder, CAROUSEL_SORT_LABELS, sortCarousels } from '@/lib/sort-carousels'
 
 export default function Dashboard() {
   const [carousels, setCarousels] = useState<Carousel[]>([])
   const [profiles, setProfiles] = useState<Profile[]>([])
+  const [templates, setTemplates] = useState<CarouselTemplate[]>([])
   const [loading, setLoading] = useState(true)
-  const [showCreate, setShowCreate] = useState(false)
+  const [sortOrder, setSortOrder] = useState<CarouselSortOrder>('recent')
+  // Abre o modal já na primeira renderização se veio de "/?criar=1" (botão "Criar Conteúdo"
+  // navegando de outra página) — lido uma vez via inicialização preguiçosa do useState, em
+  // vez de setState dentro de efeito.
+  const [showCreate, setShowCreate] = useState(() =>
+    typeof window !== 'undefined' && !!new URLSearchParams(window.location.search).get('criar'))
 
-  const load = useCallback(async () => {
-    const [c, p] = await Promise.all([
+  // Busca inicial — "ignore" evita aplicar a resposta se o efeito já tiver rodado de novo
+  // (ex: HMR em dev) antes do fetch terminar.
+  useEffect(() => {
+    let ignore = false
+    Promise.all([
       fetch('/api/carousels').then(r => r.json()),
       fetch('/api/profiles').then(r => r.json()),
-    ])
-    setCarousels(c)
-    setProfiles(p)
-    setLoading(false)
+      fetch('/api/templates').then(r => r.json()),
+    ]).then(([c, p, t]) => {
+      if (ignore) return
+      setCarousels(c)
+      setProfiles(p)
+      setTemplates(t)
+      setLoading(false)
+    })
+    return () => { ignore = true }
   }, [])
 
-  useEffect(() => { load() }, [load])
+  // Limpa a query string (se veio de "?criar=1") e escuta o evento disparado pelo botão
+  // "Criar Conteúdo" da barra lateral quando clicado já dentro do próprio Dashboard (a query
+  // string sozinha não dispara nada nesse caso porque a página não remonta).
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('criar')) {
+      window.history.replaceState(null, '', '/')
+    }
+    const onEvent = () => setShowCreate(true)
+    window.addEventListener('cv:abrir-criar-conteudo', onEvent)
+    return () => window.removeEventListener('cv:abrir-criar-conteudo', onEvent)
+  }, [])
 
   const deleteCarousel = async (id: string) => {
     if (!confirm('Excluir este carrossel?')) return
@@ -37,9 +62,10 @@ export default function Dashboard() {
   }
 
   const profileName = (id: string) => profiles.find(p => p.id === id)?.name || '—'
+  const templateName = (id?: string) => templates.find(t => t.id === id)?.name
 
   return (
-    <div className="min-h-screen flex" style={{ background: 'var(--bo-paper)', color: 'var(--bo-ink)' }}>
+    <div className="h-screen overflow-hidden flex" style={{ background: 'var(--bo-paper)', color: 'var(--bo-ink)' }}>
       <Sidebar active="dashboard"/>
 
       {/* Main */}
@@ -67,9 +93,9 @@ export default function Dashboard() {
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'var(--bo-mist)' }}>
                   <LayoutGrid size={18} style={{ color: 'var(--bo-ink)' }}/>
                 </div>
-                <h3 className="font-bold mb-2">Criar carrossel</h3>
+                <h3 className="font-bold mb-2">Criar Conteúdo</h3>
                 <p className="text-sm mb-4" style={{ color: 'var(--bo-graphite)' }}>Cola o conteúdo, sobe as imagens, escolhe o modelo — tudo já distribuído nos slides, e você cai no editor pronto pra ajustar e baixar.</p>
-                <span className="text-sm font-semibold mt-auto" style={{ color: 'var(--bo-accent)' }}>Criar carrossel →</span>
+                <span className="text-sm font-semibold mt-auto" style={{ color: 'var(--bo-accent)' }}>Criar Conteúdo →</span>
               </div>
             </button>
           </div>
@@ -82,9 +108,17 @@ export default function Dashboard() {
                 {carousels.length}
               </span>
             </h2>
-            <button onClick={() => setShowCreate(true)} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-black transition-all hover:brightness-110" style={{ background: 'var(--grad)' }}>
-              <Plus size={16}/> Criar carrossel
-            </button>
+            <div className="flex items-center gap-2">
+              <select value={sortOrder} onChange={e => setSortOrder(e.target.value as CarouselSortOrder)}
+                className="text-sm px-3 py-2 rounded-lg" style={{ background: 'var(--bo-mist)', border: '1px solid var(--bo-hairline)', color: 'var(--bo-ink)' }}>
+                {(Object.keys(CAROUSEL_SORT_LABELS) as CarouselSortOrder[]).map(k => (
+                  <option key={k} value={k}>{CAROUSEL_SORT_LABELS[k]}</option>
+                ))}
+              </select>
+              <button onClick={() => setShowCreate(true)} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-black transition-all hover:brightness-110" style={{ background: 'var(--grad)' }}>
+                <Plus size={16}/> Criar Conteúdo
+              </button>
+            </div>
           </div>
 
           {loading ? (
@@ -96,13 +130,13 @@ export default function Dashboard() {
               <p className="text-lg font-semibold mb-2">Nenhum carrossel ainda</p>
               <p className="text-sm mb-6" style={{ color: 'var(--bo-graphite)' }}>Crie seu primeiro carrossel escolhendo um modelo</p>
               <button onClick={() => setShowCreate(true)} className="px-6 py-3 rounded-xl font-semibold text-black hover:brightness-110" style={{ background: 'var(--grad)' }}>
-                Criar primeiro carrossel
+                Criar Conteúdo
               </button>
             </div>
           ) : (
             <div className="grid grid-cols-4 gap-4">
-              {carousels.map(c => (
-                <CarouselCard key={c.id} carousel={c} profileName={profileName(c.profileId)} onDelete={deleteCarousel}/>
+              {sortCarousels(carousels, sortOrder).map(c => (
+                <CarouselCard key={c.id} carousel={c} profileName={profileName(c.profileId)} templateName={templateName(c.templateId)} onDelete={deleteCarousel}/>
               ))}
             </div>
           )}

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { LayoutGrid, User, Settings, Library, MessageSquare } from 'lucide-react'
+import { LayoutGrid, User, Settings, Library, MessageSquare, Lightbulb, Plus, TrendingUp, Images } from 'lucide-react'
 import LogoMark from './LogoMark'
 
 const navItemCls = (active: boolean) =>
@@ -13,14 +13,33 @@ const navIconWrap = 'w-8 h-8 rounded-lg flex items-center justify-center shrink-
 
 // Navegação lateral persistente — usada no Dashboard e em Perfis (e em qualquer
 // outra página "de app", fora do editor de template, que tem seu próprio layout full-screen).
-export default function Sidebar({ active }: { active: 'dashboard' | 'profiles' | 'library' | 'chat' | 'settings' }) {
+export default function Sidebar({ active }: { active: 'dashboard' | 'profiles' | 'library' | 'chat' | 'settings' | 'ideas' | 'trends' | 'gallery' }) {
   return (
-    <aside className="w-64 flex-shrink-0 flex flex-col" style={{ background: 'var(--bo-cloud)', borderRight: '1px solid var(--bo-hairline)' }}>
+    <aside className="w-64 flex-shrink-0 flex flex-col overflow-y-auto" style={{ background: 'var(--bo-cloud)', borderRight: '1px solid var(--bo-hairline)' }}>
       <div className="flex items-center gap-3 px-5 h-[68px] shrink-0">
         <div className="w-9 h-9 flex items-center justify-center shrink-0">
           <LogoMark size={32}/>
         </div>
         <span className="text-[16px] font-bold tracking-tight truncate">Claude Viral</span>
+      </div>
+
+      <div className="px-3.5 pb-1 shrink-0">
+        {active === 'dashboard' ? (
+          // Já está no Início — abre o modal na hora via evento, em vez de navegar pra
+          // "/?criar=1" (que não dispara nada porque o Dashboard não remonta e o efeito
+          // que lê a query string só roda uma vez, no carregamento inicial da página).
+          <button onClick={() => window.dispatchEvent(new Event('cv:abrir-criar-conteudo'))} className="w-full">
+            <div className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-[14px] font-bold text-black transition-all hover:brightness-110" style={{ background: 'var(--grad)' }}>
+              <Plus size={17} strokeWidth={2.5}/> Criar Conteúdo
+            </div>
+          </button>
+        ) : (
+          <Link href="/?criar=1">
+            <div className="flex items-center justify-center gap-2 py-2.5 rounded-xl text-[14px] font-bold text-black transition-all hover:brightness-110" style={{ background: 'var(--grad)' }}>
+              <Plus size={17} strokeWidth={2.5}/> Criar Conteúdo
+            </div>
+          </Link>
+        )}
       </div>
 
       <nav className="flex-1 flex flex-col gap-5 px-3.5 py-3 min-h-0">
@@ -33,7 +52,7 @@ export default function Sidebar({ active }: { active: 'dashboard' | 'profiles' |
                 <div className={navIconWrap} style={{ background: active === 'dashboard' ? 'var(--grad)' : 'var(--bo-mist)' }}>
                   <LayoutGrid size={16} strokeWidth={2.25} className={active === 'dashboard' ? 'text-black' : ''}/>
                 </div>
-                Dashboard
+                Início
               </div>
             </Link>
             <Link href="/chat">
@@ -45,13 +64,40 @@ export default function Sidebar({ active }: { active: 'dashboard' | 'profiles' |
                 Chat
               </div>
             </Link>
+            <Link href="/ideas">
+              <div className={navItemCls(active === 'ideas')}
+                style={active === 'ideas' ? { background: 'rgba(255,138,30,0.14)', border: '1px solid var(--accent)', color: 'var(--accent2)' } : { color: 'var(--bo-graphite)' }}>
+                <div className={navIconWrap} style={{ background: active === 'ideas' ? 'var(--grad)' : 'var(--bo-mist)' }}>
+                  <Lightbulb size={16} strokeWidth={active === 'ideas' ? 2.25 : 1.9} className={active === 'ideas' ? 'text-black' : ''}/>
+                </div>
+                Ideias & Narrativas
+              </div>
+            </Link>
+            <Link href="/trends">
+              <div className={navItemCls(active === 'trends')}
+                style={active === 'trends' ? { background: 'rgba(255,138,30,0.14)', border: '1px solid var(--accent)', color: 'var(--accent2)' } : { color: 'var(--bo-graphite)' }}>
+                <div className={navIconWrap} style={{ background: active === 'trends' ? 'var(--grad)' : 'var(--bo-mist)' }}>
+                  <TrendingUp size={16} strokeWidth={active === 'trends' ? 2.25 : 1.9} className={active === 'trends' ? 'text-black' : ''}/>
+                </div>
+                Tendências
+              </div>
+            </Link>
             <Link href="/library">
               <div className={navItemCls(active === 'library')}
                 style={active === 'library' ? { background: 'rgba(255,138,30,0.14)', border: '1px solid var(--accent)', color: 'var(--accent2)' } : { color: 'var(--bo-graphite)' }}>
                 <div className={navIconWrap} style={{ background: active === 'library' ? 'var(--grad)' : 'var(--bo-mist)' }}>
                   <Library size={16} strokeWidth={active === 'library' ? 2.25 : 1.9} className={active === 'library' ? 'text-black' : ''}/>
                 </div>
-                Biblioteca
+                Meu Conteúdo
+              </div>
+            </Link>
+            <Link href="/gallery">
+              <div className={navItemCls(active === 'gallery')}
+                style={active === 'gallery' ? { background: 'rgba(255,138,30,0.14)', border: '1px solid var(--accent)', color: 'var(--accent2)' } : { color: 'var(--bo-graphite)' }}>
+                <div className={navIconWrap} style={{ background: active === 'gallery' ? 'var(--grad)' : 'var(--bo-mist)' }}>
+                  <Images size={16} strokeWidth={active === 'gallery' ? 2.25 : 1.9} className={active === 'gallery' ? 'text-black' : ''}/>
+                </div>
+                Galeria
               </div>
             </Link>
             <Link href="/profiles">

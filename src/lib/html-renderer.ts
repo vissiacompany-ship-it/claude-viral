@@ -108,7 +108,7 @@ function renderSlideCSS(palette: ReturnType<typeof derivePalette>, style: Visual
 
     /* COVER */
     .slide-cover { background: #000; }
-    .capa-bg { position: absolute; inset: 0; overflow: hidden; }
+    .capa-bg { position: absolute; inset: 0; overflow: hidden; background: #000; }
     .capa-grad {
       position: absolute; inset: 0;
       background: linear-gradient(to bottom,
@@ -276,8 +276,17 @@ function renderSlideCSS(palette: ReturnType<typeof derivePalette>, style: Visual
     .es-slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; flex-shrink: 0; font-family: 'Inter', 'Plus Jakarta Sans', sans-serif; }
     .es-slide.es-light { background: #fff; }
     .es-slide.es-cover { background: #dfe6ea; }
+    .es-slide.es-dark { background: #14110d; }
+    .es-dark .es-headline { color: #f3efe7; }
+    .es-dark .es-body, .es-dark .es-subtitle { color: #cfc9bd; }
+    .es-dark .es-body strong, .es-dark .es-subtitle strong { color: #fff; }
+    .es-dark .es-handle { color: #f3efe7; }
+    .es-dark .es-dot { background: rgba(255,255,255,0.2); }
 
-    .es-cover-bg { position: absolute; inset: 0; overflow: hidden; }
+    .es-pill-tag { display: inline-flex; align-self: flex-start; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: #f3efe7; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 22px; padding: 10px 26px; border-radius: 999px; flex-shrink: 0; }
+    .es-light .es-pill-tag { background: #f3f1eb; border-color: #e5e1d6; color: #161311; }
+
+    .es-cover-bg { position: absolute; inset: 0; overflow: hidden; background: #000; }
 
     .es-avatar-row { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .es-cover .es-avatar-row { justify-content: center; }
@@ -291,10 +300,13 @@ function renderSlideCSS(palette: ReturnType<typeof derivePalette>, style: Visual
     .es-cover .es-content { top: 56px; align-items: center; text-align: center; }
     .es-cover .es-headline, .es-cover .es-subtitle { align-self: stretch; }
     .es-content > * { min-width: 0; max-width: 100%; }
+    .es-content-centered { align-items: center; text-align: center; }
+    .es-content-centered > * { align-self: stretch; }
+    .es-content-centered .es-avatar-row, .es-content-centered .es-pill-tag { align-self: center; }
 
     .es-headline { font-family: 'Playfair Display', serif; font-weight: 700; text-transform: uppercase; line-height: 1.06; letter-spacing: -0.5px; color: #161311; margin: 0; overflow-wrap: break-word; word-break: break-word; flex-shrink: 0; }
     .es-cover .es-headline { font-size: 78px; }
-    .es-light .es-headline { font-size: 56px; }
+    .es-light .es-headline, .es-dark .es-headline { font-size: 56px; }
     .es-headline em { color: var(--PS); font-style: normal; }
 
     .es-subtitle { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 400; line-height: 1.45; color: #2a2a2a; overflow-wrap: break-word; word-break: break-word; flex-shrink: 0; }
@@ -317,8 +329,9 @@ function renderSlideCSS(palette: ReturnType<typeof derivePalette>, style: Visual
     .es-img-triple .es-img-big { flex: 0 0 62%; border-radius: 20px; overflow: hidden; position: relative; }
     .es-img-triple .es-img-stack { flex: 1; display: flex; flex-direction: column; gap: 14px; }
     .es-img-triple .es-img-stack .es-img-cell { flex: 1; border-radius: 20px; overflow: hidden; position: relative; }
-    .es-img-placeholder { width: 100%; height: 100%; background: #f3f3f1; border: 2px dashed #c9c9c4; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
-    .es-img-placeholder svg { width: 15%; height: 15%; opacity: 0.35; }
+    .es-img-placeholder { width: 100%; height: 100%; background: rgba(255,138,30,0.08); border: 3px dashed rgba(255,138,30,0.55); box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+    .es-img-placeholder svg { width: 14%; height: 14%; opacity: 0.6; }
+    .es-img-placeholder span { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: rgba(154,88,10,0.75); letter-spacing: 0.3px; }
 
     .es-dots { position: absolute; bottom: 26px; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 10px; z-index: 10; }
     .es-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(0,0,0,0.18); }
@@ -328,7 +341,7 @@ function renderSlideCSS(palette: ReturnType<typeof derivePalette>, style: Visual
     /* ============ BOLD SANS (Modelo 4) — citações, avatar em pílula com anel colorido ============ */
     .bs-slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; flex-shrink: 0; font-family: 'Poppins', sans-serif; }
     .bs-slide.bs-light { background: #fff; }
-    .bs-cover-bg { position: absolute; inset: 0; overflow: hidden; background: #fff; }
+    .bs-cover-bg { position: absolute; inset: 0; overflow: hidden; background: #000; }
 
     .bs-badge { display: inline-flex; align-items: center; align-self: flex-start; gap: 10px; background: #f2f2f2; border-radius: 999px; padding: 8px 22px 8px 8px; flex-shrink: 0; }
     .bs-cover .bs-badge { align-self: center; background: linear-gradient(135deg, rgba(0,0,0,0.55), rgba(0,0,0,0.3)); backdrop-filter: blur(6px); }
@@ -342,7 +355,7 @@ function renderSlideCSS(palette: ReturnType<typeof derivePalette>, style: Visual
     .bs-verified svg { width: 100%; height: 100%; }
 
     .bs-content { position: absolute; top: 0; left: 64px; right: 64px; bottom: 0; display: flex; flex-direction: column; gap: 32px; }
-    .bs-cover .bs-content { justify-content: flex-end; padding-bottom: 90px; }
+    .bs-cover .bs-content { justify-content: flex-end; }
 
     .bs-headline { font-family: 'Poppins', sans-serif; font-weight: 500; line-height: 1.25; color: #fff; font-size: 55px; }
     .bs-headline strong { font-weight: 800; }
@@ -405,13 +418,79 @@ function renderSlideCSS(palette: ReturnType<typeof derivePalette>, style: Visual
     .pb-headline { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 62px; line-height: 1.05; text-transform: uppercase; flex-shrink: 0; }
     .pb-headline strong { font-weight: 900; }
     .pb-divider { width: 100%; height: 3px; background: currentColor; opacity: 0.5; flex-shrink: 0; }
-    .pb-body { font-size: 34px; line-height: 1.5; font-weight: 400; opacity: 0.92; flex-shrink: 0; }
+    .pb-body { font-size: 34px; line-height: 1.5; font-weight: 400; font-style: italic; opacity: 0.92; flex-shrink: 0; }
     .pb-body p { margin-bottom: 20px; }
     .pb-body p:last-child { margin-bottom: 0; }
     .pb-body strong { font-weight: 700; }
-    .pb-body em { font-style: italic; font-family: 'Playfair Display', serif; }
+    .pb-body em { font-style: italic; }
     .pb-body em.highlight { color: var(--PS); font-style: normal; font-weight: 700; }
     .pb-swipe { position: absolute; bottom: 28px; right: 56px; font-size: 22px; opacity: 0.6; z-index: 5; }
+
+    /* ============ DARK STORY (Modelo 7) — relato em fundo escuro: capa com foto cheia,
+       slides internos com título+corpo no topo e card de foto com avatar por cima,
+       rodapé com bolinhas de paginação + "arrasta pro lado" ============ */
+    .ds-slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; flex-shrink: 0; font-family: 'Inter', sans-serif; background: #0a0a0a; display: flex; flex-direction: column; }
+    .ds-slide.ds-cover { background: #000; }
+
+    .ds-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-shrink: 0; }
+    .ds-header-overlay { position: absolute; top: 0; left: 0; right: 0; padding: 46px 48px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; z-index: 10; }
+    .ds-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 26px; color: #fff; }
+    .ds-tag { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 22px; color: rgba(255,255,255,0.5); }
+
+    .ds-cover-bg { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    .ds-cover-content { position: absolute; left: 48px; right: 48px; display: flex; flex-direction: column; z-index: 8; }
+
+    .ds-content { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+    .ds-headline { font-family: 'Inter', sans-serif; font-weight: 800; line-height: 1.2; color: #fff; flex-shrink: 0; font-size: 80px; }
+    .ds-cover .ds-headline { font-size: 80px; }
+    .ds-headline strong, .ds-headline em.highlight { font-weight: 800; }
+    .ds-body { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 36px; line-height: 1.5; color: rgba(255,255,255,0.62); flex-shrink: 0; }
+    .ds-body p { margin-bottom: 20px; }
+    .ds-body p:last-child { margin-bottom: 0; }
+    .ds-body strong { font-weight: 700; color: #fff; }
+    .ds-body em.highlight { color: var(--PS); font-style: normal; font-weight: 700; }
+
+    .ds-imgcard { position: relative; border-radius: 20px; overflow: hidden; flex-shrink: 0; }
+    .ds-img-footer { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 14px; padding: 20px 24px; background: linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0)); }
+
+    .ds-avatar-row { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .ds-avatar { border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--P); color: #fff; font-weight: 800; font-family: 'Inter', sans-serif; flex-shrink: 0; }
+    .ds-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+    .ds-avatar-namewrap { display: flex; flex-direction: column; gap: 2px; }
+    .ds-avatar-row-center .ds-avatar-namewrap { text-align: center; }
+    .ds-avatar-name { display: flex; align-items: center; gap: 6px; color: #fff; font-weight: 700; }
+    .ds-avatar-handle { color: rgba(255,255,255,0.55); font-weight: 500; }
+    .ds-verified { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 20px; height: 20px; }
+    .ds-verified svg { width: 100%; height: 100%; }
+
+    .ds-footer { display: flex; align-items: center; justify-content: flex-end; position: relative; flex-shrink: 0; }
+    .ds-footer .ds-dots-row { position: absolute; left: 0; right: 0; justify-content: center; }
+    .ds-footer-overlay { position: absolute; bottom: 30px; left: 48px; right: 48px; z-index: 10; display: flex; align-items: center; justify-content: flex-end; }
+    .ds-footer-overlay .ds-dots-row { position: absolute; left: 0; right: 0; justify-content: center; }
+    .ds-dots-row { display: flex; align-items: center; gap: 8px; }
+    .ds-dot { border-radius: 50%; background: rgba(255,255,255,0.25); }
+    .ds-dot.on { background: #fff; }
+    .ds-swipe { font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.5); font-weight: 600; font-size: 20px; }
+
+    /* ============ PHOTO QUOTE (Modelo 8) — frase em foto cheia, tipografia arredondada
+       e bem grossa (Nunito), sombra suave no texto pra descolar da foto, sem
+       avatar/pill (só um texto pequeno em caixa alta na capa) e ícones estilo Instagram
+       (curtir/comentar/compartilhar/salvar) só na capa ============ */
+    .pq-slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; flex-shrink: 0; font-family: 'Poppins', sans-serif; background: #000; }
+    .pq-bg { position: absolute; inset: 0; overflow: hidden; }
+    .pq-handle { position: absolute; top: 145px; left: 0; right: 0; z-index: 5; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.92); text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
+    .pq-content { position: absolute; left: 0; right: 0; z-index: 5; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+    .pq-content.pq-left { align-items: flex-start; text-align: left; }
+    .pq-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 94px; line-height: 1; color: #fff; text-shadow: 0 3px 0 rgba(0,0,0,0.25), 0 6px 14px rgba(0,0,0,0.35); }
+    .pq-title strong, .pq-title em.highlight { font-weight: 800; }
+    .pq-subtitle { font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 30px; line-height: 1.05; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .pq-subtitle strong { font-weight: 800; }
+    .pq-subtitle em.highlight { font-style: normal; font-weight: 800; }
+    .pq-icons { display: flex; align-items: center; justify-content: center; gap: 28px; margin-top: 10px; align-self: center; }
+    .pq-icons svg { width: 30px; height: 30px; fill: none; stroke: #fff; stroke-width: 1.8; }
+    .pq-dots { position: absolute; bottom: 26px; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 10px; z-index: 10; }
+    .pq-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.45); }
+    .pq-dot.on { background: #fff; width: 11px; height: 11px; }
   `
 }
 
@@ -419,16 +498,24 @@ function renderSlideCSS(palette: ReturnType<typeof derivePalette>, style: Visual
 // vem do mesmo "Entre blocos" do painel Layout do Texto, senão esse controle só mexia no
 // espaço entre título/corpo/imagem como blocos inteiros, nunca entre linhas dentro do corpo
 // (ex: cada item de uma lista com ✅), que é onde a maioria das pessoas espera ver o efeito.
+// Negrito/itálico/sublinhado digitados de verdade (editor rico do painel) — **bold**,
+// *italic*, ++underline++. Separado de __word__ (que é o destaque verde de marca, não
+// sublinhado) e do applyHighlights (destaque por palavra com cor própria).
+function applyInlineMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/__(.+?)__/g, '<em class="highlight">$1</em>')
+    .replace(/\+\+(.+?)\+\+/g, '<u>$1</u>')
+    .replace(/\{\{color:(#[0-9a-fA-F]{3,8})\}\}(.*?)\{\{\/color\}\}/g, '<span style="color:$1">$2</span>')
+}
+
 function formatBody(text: string, highlights: SlideHighlightLite[] = [], gapPx?: number): string {
   if (!text) return ''
   // Split by double newline into paragraphs, apply markdown-ish formatting
   const paragraphs = text.split('\n\n').filter(Boolean)
   return paragraphs.map((p, i) => {
-    const formatted = applyHighlights(p, highlights)
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/__(.+?)__/g, '<em class="highlight">$1</em>')
-      .replace(/\n/g, '<br>')
+    const formatted = applyInlineMarkdown(applyHighlights(p, highlights)).replace(/\n/g, '<br>')
     const style = gapPx !== undefined && i < paragraphs.length - 1 ? ` style="margin-bottom:${gapPx}px"` : ''
     return `<p${style}>${formatted}</p>`
   }).join('')
@@ -468,10 +555,25 @@ function applyHighlights(title: string, highlights: SlideHighlightLite[]): strin
 // sem nunca esticar. Sem essa informação, cai pra "cover" puro (sem distorcer, mas o
 // quanto dá pra arrastar depende da proporção da foto).
 function coverBgStyle(image: string | undefined, pos: { x: number; y: number } | undefined, mirror: boolean | undefined, sizePx?: { w: number; h: number }): string {
-  if (!image) return 'background:#fff;'
+  if (!image) return 'background:rgba(255,138,30,0.08); border:3px dashed rgba(255,138,30,0.55); box-sizing:border-box;'
   const mirrorT = mirror ? ' transform:scaleX(-1);transform-origin:center;' : ''
   const size = sizePx ? `${sizePx.w}px ${sizePx.h}px` : 'cover'
   return `background-image:url('${image}'); background-size:${size}; background-position:${pos?.x ?? 50}% ${pos?.y ?? 50}%; background-repeat:no-repeat;${mirrorT}`
+}
+
+// Versão "mais suave" do degradê — sem a faixa 100% sólida no meio do caminho que
+// imageGradientOverlay usa (necessária pra cobrir texto por cima da imagem). Aqui é só uma
+// transição contínua em 5 pontos, pedida especificamente pro "Retrato & Texto".
+function smoothGradientOverlay(slide: Slide): string {
+  if (!slide.gradientOn) return ''
+  const color = slide.gradientColor || '#000000'
+  const dir = slide.gradientDir || 'top'
+  const extent = slide.gradientExtent ?? 56
+  const dirMap: Record<string, string> = { bottom: 'to top', top: 'to bottom', left: 'to right', right: 'to left' }
+  const stops = [0, 0.21, 0.49, 0.76, 1].map(f => +(f * extent).toFixed(1))
+  const opacities = [1, 0.9, 0.6, 0.25, 0]
+  const gradient = `linear-gradient(${dirMap[dir]}, ${stops.map((s, i) => `${color}${Math.round(opacities[i] * 255).toString(16).padStart(2, '0')} ${s}%`).join(', ')})`
+  return `<div style="position:absolute;inset:0;background:${gradient};pointer-events:none;"></div>`
 }
 
 function imageGradientOverlay(slide: Slide): string {
@@ -480,7 +582,15 @@ function imageGradientOverlay(slide: Slide): string {
   const dir = slide.gradientDir || 'bottom'
   const extent = slide.gradientExtent ?? 50
   const dirMap: Record<string, string> = { bottom: 'to top', top: 'to bottom', left: 'to right', right: 'to left' }
-  const gradient = `linear-gradient(${dirMap[dir]}, ${color}ff 0%, ${color}00 ${extent}%)`
+  // Antes era só 2 stops (opaco no pixel 0 -> transparente em extent%) — uma transição CONTÍNUA
+  // desde a borda, então nunca existia uma faixa realmente sólida: no ponto onde o texto senta
+  // (perto da borda, mas não exatamente nela) a opacidade já tinha caído bastante e a imagem
+  // vazava por trás do texto, mesmo com extent em 100%. Agora a metade do trajeto (0 até
+  // extent/2) fica 100% OPACA de verdade — uma faixa sólida real, não só "quase opaca" — e só
+  // a segunda metade (extent/2 até extent) faz a transição suave até ficar transparente. Isso
+  // cobre o texto por completo mesmo com extent moderado, sem precisar passar de 100%.
+  const solidUntil = extent / 2
+  const gradient = `linear-gradient(${dirMap[dir]}, ${color}ff 0%, ${color}ff ${solidUntil}%, ${color}00 ${extent}%)`
   return `<div style="position:absolute;inset:0;background:${gradient};pointer-events:none;"></div>`
 }
 
@@ -492,6 +602,8 @@ function titleStyle(slide: Slide): string {
   if (slide.titleWeight) parts.push(`font-weight:${slide.titleWeight}`)
   if (slide.titleLineHeight) parts.push(`line-height:${slide.titleLineHeight}`)
   if (slide.textAlign) parts.push(`text-align:${slide.textAlign}`)
+  const titleCase = slide.titleCase || (slide.titleUppercase === false ? 'none' : undefined)
+  if (titleCase) parts.push(`text-transform:${titleCase}`)
   return parts.length ? ` style="${parts.join(';')}"` : ''
 }
 function bodyStyle(slide: Slide): string {
@@ -501,6 +613,7 @@ function bodyStyle(slide: Slide): string {
   if (slide.bodyColor) parts.push(`color:${slide.bodyColor}`)
   if (slide.bodyWeight) parts.push(`font-weight:${slide.bodyWeight}`)
   if (slide.bodyLineHeight) parts.push(`line-height:${slide.bodyLineHeight}`)
+  if (slide.bodyCase) parts.push(`text-transform:${slide.bodyCase}`)
   if (slide.textAlign) parts.push(`text-align:${slide.textAlign}`)
   return parts.length ? ` style="${parts.join(';')}"` : ''
 }
@@ -513,6 +626,7 @@ function subtitleStyle(slide: Slide): string {
   if (slide.bodyColor) parts.push(`color:${slide.bodyColor}`)
   if (slide.bodyWeight) parts.push(`font-weight:${slide.bodyWeight}`)
   if (slide.bodyLineHeight) parts.push(`line-height:${slide.bodyLineHeight}`)
+  if (slide.bodyCase) parts.push(`text-transform:${slide.bodyCase}`)
   if (slide.textAlign) parts.push(`text-align:${slide.textAlign}`)
   return parts.length ? ` style="${parts.join(';')}"` : ''
 }
@@ -533,7 +647,7 @@ function esImageBlock(
   const grad = gradientHTML || ''
   const img = (i: number) => images?.[i]
     ? `<div style="${esImgBgStyle(images[i], positions?.[i], mirrors?.[i], sizesPx?.[i])}"></div>${grad}`
-    : `<div class="es-img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#8a8a84" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div>`
+    : `<div class="es-img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#9a580a" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Sem imagem</span></div>`
   if (layout === 'top' || layout === 'bottom') {
     return `<div class="es-img-single" style="height:${height || 480}px">${img(0)}</div>`
   }
@@ -585,7 +699,7 @@ function renderSlideEditorialSerif(
   verifiedDefault?: boolean, brandTextColor?: string, brandTextSize?: number, brandTextFont?: string,
   dotSize?: number, dotsVisible?: boolean
 ): string {
-  const titleWithHighlights = applyHighlights(slide.title || '', slide.highlights || [])
+  const titleWithHighlights = applyInlineMarkdown(applyHighlights(slide.title || '', slide.highlights || []))
   const bodyHTML = formatBody(slide.body || '', slide.highlights || [], slide.blockGap || 24)
   const subtitleHTML = formatBody(slide.subtitle || '', slide.highlights || [])
   const handle = instagram ? `@${instagram}` : 'sua marca'
@@ -603,7 +717,7 @@ function renderSlideEditorialSerif(
           </svg>
         </span>` : ''
   const avatarRowJustify = slide.textAlign === 'left' ? 'flex-start' : slide.textAlign === 'right' ? 'flex-end' : slide.textAlign ? 'center' : undefined
-  const avatarRow = `
+  const avatarRow = slide.hideAvatarRow ? '' : `
     <div class="es-avatar-row"${avatarRowJustify ? ` style="justify-content:${avatarRowJustify};align-self:stretch;"` : ''}>
       <div class="es-avatar-dot" style="width:${avatarSize}px;height:${avatarSize}px;font-size:${Math.round(avatarSize * 0.41)}px;">${avatarInner(initial, avatarImage)}</div>
       <div class="es-handle" style="font-size:${handleSize}px;color:${handleColor};">${handle}${verifiedBadge}
@@ -617,11 +731,16 @@ function renderSlideEditorialSerif(
   if (slide.background === 'cover') {
     const imgStyle = coverBgStyle(slide.image, slide.imagePosition, slide.imageMirror, slide.imageBgSizePx)
     const top = 56 + (slide.marginV || 0)
+    const bottom = 66 + (slide.marginVBottom || 0)
+    // .es-cover .es-content centraliza por padrão via CSS; só sobrescreve inline quando o
+    // slide pede alinhamento diferente (ex: manchete bold-sans à esquerda, sem centralizar).
+    const coverAlign = slide.textAlign === 'left' ? 'flex-start' : slide.textAlign === 'right' ? 'flex-end' : undefined
+    const coverAlignStyle = coverAlign ? ` align-items:${coverAlign}; text-align:${slide.textAlign};` : ''
     return `
     <div class="es-slide es-cover">
       <div class="es-cover-bg" style="${imgStyle}"></div>
       ${imageGradientOverlay(slide)}
-      <div class="es-content" style="gap:${gap}px; left:${mh}px; right:${mh}px; top:${top}px; justify-content:${slide.textAnchor === 'bottom' ? 'flex-end' : slide.textAnchor === 'center' ? 'center' : 'flex-start'};">
+      <div class="es-content" style="gap:${gap}px; left:${mh}px; right:${mh}px; top:${top}px; bottom:${bottom}px; justify-content:${slide.textAnchor === 'bottom' ? 'flex-end' : slide.textAnchor === 'center' ? 'center' : 'flex-start'};${coverAlignStyle}">
         ${avatarRow}
         ${slide.title ? `<div class="es-headline" data-field="title"${titleStyle(slide)}>${titleWithHighlights}</div>` : ''}
         ${slide.subtitle ? `<div class="es-subtitle" data-field="subtitle"${subtitleStyle(slide)}>${subtitleHTML}</div>` : ''}
@@ -631,18 +750,31 @@ function renderSlideEditorialSerif(
     </div>`
   }
 
-  // light editorial-serif
-  const imgBlock = esImageBlock(slide.imageLayout, slide.images, slide.imageHeight, slide.imagePositions, slide.imageMirrors, imageGradientOverlay(slide), slide.imageBgSizesPx)
-  const isTopImg = slide.imageLayout === 'top' || slide.imageLayout === 'triple-top'
-  const isBottomImg = slide.imageLayout === 'bottom' || slide.imageLayout === 'double-bottom'
+  // editorial-serif — light ou dark (o resto do design é o mesmo, só inverte a paleta).
+  // Posição da imagem: "imagePlacement" (topo/meio/embaixo, escolhido na barra lateral) tem
+  // prioridade; sem isso, cai no comportamento antigo (derivado só do imageLayout do modelo).
+  // "hideImage" sempre pode apagar o bloco de imagem, mesmo ele existindo por padrão.
+  const hasImg = !!slide.imageLayout && slide.imageLayout !== 'none' && !slide.hideImage
+  const imgBlock = hasImg
+    ? esImageBlock(slide.imageLayout, slide.images, slide.imageHeight, slide.imagePositions, slide.imageMirrors, smoothGradientOverlay(slide), slide.imageBgSizesPx)
+    : ''
+  const isMulti = slide.imageLayout === 'double-bottom' || slide.imageLayout === 'triple-top'
+  const placement = slide.imagePlacement || (slide.imageLayout === 'bottom' ? 'bottom' : 'top')
+  const isTopImg = hasImg && (isMulti ? slide.imageLayout === 'triple-top' : placement === 'top')
+  const isMiddleImg = hasImg && !isMulti && placement === 'middle'
+  const isBottomImg = hasImg && (isMulti ? slide.imageLayout === 'double-bottom' : placement === 'bottom')
   const top = 151 + (slide.marginV || 0)
+  const bottom = 66 + (slide.marginVBottom || 0)
+  const isDark = slide.background === 'dark'
   const bgStyle = slide.bgColor ? ` style="background:${slide.bgColor}"` : ''
   return `
-  <div class="es-slide es-light"${bgStyle}>
-    <div class="es-content" style="gap:${gap}px; left:${mh}px; right:${mh}px; top:${top}px; justify-content:${slide.textAnchor === 'bottom' ? 'flex-end' : slide.textAnchor === 'center' ? 'center' : 'flex-start'};">
+  <div class="es-slide ${isDark ? 'es-dark' : 'es-light'}"${bgStyle}>
+    <div class="es-content${slide.textAlign === 'center' ? ' es-content-centered' : ''}" style="gap:${gap}px; left:${mh}px; right:${mh}px; top:${top}px; bottom:${bottom}px; justify-content:${slide.textAnchor === 'bottom' ? 'flex-end' : slide.textAnchor === 'center' ? 'center' : 'flex-start'};">
       ${isTopImg ? imgBlock : ''}
       ${avatarRow}
+      ${slide.tag ? `<div class="es-pill-tag" data-field="tag">${slide.tag}</div>` : ''}
       ${slide.title ? `<div class="es-headline" data-field="title"${titleStyle(slide)}>${titleWithHighlights}</div>` : ''}
+      ${isMiddleImg ? imgBlock : ''}
       ${slide.body ? `<div class="es-body" data-field="body"${bodyStyle(slide)}>${bodyHTML}</div>` : ''}
       ${isBottomImg ? imgBlock : ''}
     </div>
@@ -659,7 +791,7 @@ function renderSlideBoldSans(
   verifiedDefault?: boolean, brandTextColor?: string, brandTextSize?: number, brandTextFont?: string,
   dotSize?: number, dotsVisible?: boolean
 ): string {
-  const titleWithHighlights = applyHighlights(slide.title || '', slide.highlights || [])
+  const titleWithHighlights = applyInlineMarkdown(applyHighlights(slide.title || '', slide.highlights || []))
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
   const bodyHTML = formatBody(slide.body || '', slide.highlights || [], slide.blockGap || 72)
   const handle = instagram ? `@${instagram}` : 'sua marca'
@@ -687,7 +819,7 @@ function renderSlideBoldSans(
   const dots = renderDots('bs', total, slide.index - 1, dotSize, dotsVisible)
   const gap = slide.blockGap || 72
   const mh = slide.marginH || 64
-  const subtitleWithHighlights = applyHighlights(slide.subtitle || '', slide.highlights || [])
+  const subtitleWithHighlights = applyInlineMarkdown(applyHighlights(slide.subtitle || '', slide.highlights || []))
   const subtitle = slide.subtitle
     ? `<div class="bs-subtitle" data-field="subtitle"${subtitleStyle(slide)}>${subtitleWithHighlights}</div>`
     : ''
@@ -697,11 +829,17 @@ function renderSlideBoldSans(
   if (slide.background === 'cover') {
     const imgStyle = coverBgStyle(slide.image, slide.imagePosition, slide.imageMirror, slide.imageBgSizePx)
     const coverGap = slide.blockGap || 48
+    // "Topo extra"/"Margem inferior extra" (marginV/marginVBottom) nunca eram aplicados aqui
+    // — a caixa de conteúdo ficava sempre presa em top:0/bottom:0 (com um padding-bottom
+    // fixo de 90px), então mexer nesses dois sliders não fazia nada visível. Agora top/bottom
+    // usam esses campos de verdade, com 90px de base embutido na margem inferior.
+    const coverTop = slide.marginV || 0
+    const coverBottom = 90 + (slide.marginVBottom || 0)
     return `
     <div class="bs-slide bs-cover">
       <div class="bs-cover-bg" style="${imgStyle}"></div>
       ${imageGradientOverlay(slide)}
-      <div class="bs-content" style="gap:${coverGap}px; left:${mh}px; right:${mh}px; justify-content:${justify}; align-items:center; text-align:center;">
+      <div class="bs-content" style="gap:${coverGap}px; left:${mh}px; right:${mh}px; top:${coverTop}px; bottom:${coverBottom}px; justify-content:${justify}; align-items:center; text-align:center;">
         ${badge}
         ${slide.title ? `<div class="bs-headline" data-field="title"${titleStyle(slide)}>${titleWithHighlights}</div>` : ''}
         ${subtitle}
@@ -712,15 +850,25 @@ function renderSlideBoldSans(
   }
 
   const bgStyle = slide.bgColor ? ` style="background:${slide.bgColor}"` : ''
-  const imageBlock = slide.imageLayout && slide.imageLayout !== 'none' && slide.image
-    ? esImageBlock(slide.imageLayout, [slide.image], slide.imageHeight, [slide.imagePosition], [slide.imageMirror], '', [slide.imageBgSizePx])
+  // O campo populado de verdade pra esse imageLayout é o array plural (images/imagePositions/
+  // imageMirrors) — igual editorial-serif já faz — não o campo singular antigo. Só cai pro
+  // singular como último recurso (carrossel salvo antes dessa correção, por ex).
+  const bsImage = slide.images?.[0] ?? slide.image
+  const imageBlock = slide.imageLayout && slide.imageLayout !== 'none' && bsImage
+    ? esImageBlock(slide.imageLayout, [bsImage], slide.imageHeight,
+        [slide.imagePositions?.[0] ?? slide.imagePosition], [slide.imageMirrors?.[0] ?? slide.imageMirror], '',
+        [slide.imageBgSizesPx?.[0] ?? slide.imageBgSizePx])
     : ''
+  // "imagePlacement" (escolhido na barra lateral) manda na posição real; sem isso, cai no
+  // comportamento antigo (imagem sempre no topo, único que existia até então).
+  const isImgBottom = !!imageBlock && (slide.imagePlacement || (slide.imageLayout === 'bottom' ? 'bottom' : 'top')) === 'bottom'
   return `
   <div class="bs-slide bs-light"${bgStyle}>
     <div class="bs-content" style="gap:${gap}px; left:${mh}px; right:${mh}px; justify-content:${justify};">
-      ${imageBlock}
+      ${!isImgBottom ? imageBlock : ''}
       ${badge}
       ${slide.body ? `<div class="bs-body" data-field="body"${bodyStyle(slide)}>${bodyHTML}</div>` : ''}
+      ${isImgBottom ? imageBlock : ''}
     </div>
     ${brandTextOverlay(brandText, brandPosition, false, brandTextColor, brandTextSize, brandTextFont)}
     ${dots}
@@ -736,10 +884,10 @@ function renderSlideStepGuide(
   verifiedDefault?: boolean, displayName?: string, brandTextColor?: string, brandTextSize?: number, brandTextFont?: string,
   dotSize?: number, dotsVisible?: boolean
 ): string {
-  const titleWithHighlights = applyHighlights(slide.title || '', slide.highlights || [])
+  const titleWithHighlights = applyInlineMarkdown(applyHighlights(slide.title || '', slide.highlights || []))
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
   const bodyHTML = formatBody(slide.body || '', slide.highlights || [], slide.blockGap || 16)
-  const subtitleWithHighlights = applyHighlights(slide.subtitle || '', slide.highlights || [])
+  const subtitleWithHighlights = applyInlineMarkdown(applyHighlights(slide.subtitle || '', slide.highlights || []))
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
   const handle = instagram ? `@${instagram}` : 'sua marca'
   const avatarSize = slide.avatarSize || avatarSizeDefault || 56
@@ -748,6 +896,7 @@ function renderSlideStepGuide(
   const showVerified = verifiedDefault !== false
   const mh = slide.marginH || 72
   const mv = slide.marginV || 0
+  const mvBottom = slide.marginVBottom || 0
   const gap = slide.blockGap || 16
   const justify = slide.textAnchor === 'bottom' ? 'flex-end' : slide.textAnchor === 'center' ? 'center' : 'flex-start'
   const verifiedBadge = showVerified ? `
@@ -770,13 +919,16 @@ function renderSlideStepGuide(
     </div>`
   const dots = renderDots('sg', total, slide.index - 1, dotSize, dotsVisible)
   const hasImg = (slide.imageLayout === 'top' || slide.imageLayout === 'bottom') && !slide.hideImage
+  // "imagePlacement" (escolhido na barra lateral) manda na posição real; sem isso, cai no
+  // comportamento antigo (derivado só do imageLayout fixo do modelo).
+  const placement = slide.imagePlacement || (slide.imageLayout === 'bottom' ? 'bottom' : 'top')
+  const isImgBottom = placement === 'bottom'
   const imageCard = hasImg
-    ? `<div class="sg-imgcard" style="margin-${slide.imageLayout === 'bottom' ? 'top' : 'bottom'}:${gap}px">${esImageBlock('top', slide.images, slide.imageHeight, slide.imagePositions, slide.imageMirrors, '', slide.imageBgSizesPx)}</div>`
+    ? `<div class="sg-imgcard" style="margin-${isImgBottom ? 'top' : 'bottom'}:${gap}px">${esImageBlock('top', slide.images, slide.imageHeight, slide.imagePositions, slide.imageMirrors, imageGradientOverlay(slide), slide.imageBgSizesPx)}</div>`
     : ''
-  const isImgBottom = slide.imageLayout === 'bottom'
 
   return `
-  <div class="sg-slide" style="padding:${56 + mv}px ${mh}px 56px;">
+  <div class="sg-slide" style="padding:${56 + mv}px ${mh}px ${56 + mvBottom}px;">
     <div class="sg-content" style="justify-content:${justify}; gap:${gap}px;">
       ${header}
       ${!isImgBottom ? imageCard : ''}
@@ -794,7 +946,7 @@ function renderSlideStepGuide(
 // Estilo "foto + bloco de cor" — foto no topo (fixa, sem crop deformado), bloco sólido
 // embaixo alternando escuro/claro, título condensado bold + linha divisória + corpo.
 function renderSlidePhotoBlock(slide: Slide, total: number, instagram: string, handleSizeDefault?: number, handleColorDefault?: string): string {
-  const titleWithHighlights = applyHighlights(slide.title || '', slide.highlights || [])
+  const titleWithHighlights = applyInlineMarkdown(applyHighlights(slide.title || '', slide.highlights || []))
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
   const gap = slide.blockGap || 28
   const bodyHTML = formatBody(slide.body || '', slide.highlights || [], gap)
@@ -807,6 +959,7 @@ function renderSlidePhotoBlock(slide: Slide, total: number, instagram: string, h
   const swipeText = slide.tag || 'Arraste para o lado'
   const mh = slide.marginH || 56
   const mv = slide.marginV || 0
+  const mvBottom = slide.marginVBottom || 0
   const justify = slide.textAnchor === 'bottom' ? 'flex-end' : slide.textAnchor === 'center' ? 'center' : 'flex-start'
 
   return `
@@ -814,12 +967,151 @@ function renderSlidePhotoBlock(slide: Slide, total: number, instagram: string, h
     <div class="pb-photo" style="${imgStyle}">
       <div class="pb-handle" style="font-size:${handleSize}px;color:${handleColor};">${handle}</div>
     </div>
-    <div class="pb-block ${isDark ? 'pb-dark' : 'pb-light'}"${blockBg} style="padding:${56 + mv}px ${mh}px 48px; justify-content:${justify}; gap:${gap}px;">
+    <div class="pb-block ${isDark ? 'pb-dark' : 'pb-light'}"${blockBg} style="padding:${56 + mv}px ${mh}px ${48 + mvBottom}px; justify-content:${justify}; gap:${gap}px;">
       ${slide.title ? `<div class="pb-headline" data-field="title"${titleStyle(slide)}>${titleWithHighlights}</div>` : ''}
       <div class="pb-divider"></div>
       ${slide.body ? `<div class="pb-body" data-field="body"${bodyStyle(slide)}>${bodyHTML}</div>` : ''}
       <div class="pb-swipe" data-field="tag">${swipeText}</div>
     </div>
+  </div>`
+}
+
+// Estilo "relato em fundo escuro" — capa com foto cheia (nome+categoria sobrepostos),
+// slides internos com título+corpo no topo em fundo escuro e um card de foto com
+// avatar+nome sobreposto na base da própria foto. Rodapé com bolinhas de paginação +
+// "arrasta pro lado" (oculto no último slide, que não tem pra onde arrastar).
+function renderSlideDarkStory(
+  slide: Slide, total: number, instagram: string, initial: string, avatarImage?: string,
+  brandText?: string, brandPosition?: string, avatarSizeDefault?: number, handleSizeDefault?: number, handleColorDefault?: string,
+  verifiedDefault?: boolean, displayName?: string, brandTextColor?: string, brandTextSize?: number, brandTextFont?: string,
+  dotSize?: number, dotsVisible?: boolean
+): string {
+  const titleWithHighlights = applyInlineMarkdown(applyHighlights(slide.title || '', slide.highlights || []))
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+  const bodyHTML = formatBody(slide.body || '', slide.highlights || [], slide.blockGap || 24)
+  const handle = instagram ? `@${instagram}` : 'sua marca'
+  const name = displayName || handle
+  const avatarSize = slide.avatarSize || avatarSizeDefault || 46
+  const handleSize = slide.handleSize || handleSizeDefault || 24
+  const handleColor = slide.handleColor || handleColorDefault || '#ffffff'
+  const showVerified = verifiedDefault !== false
+  const mh = slide.marginH || 56
+  const mv = slide.marginV || 0
+  const mvBottom = slide.marginVBottom || 0
+  const gap = slide.blockGap || 24
+  const justify = slide.textAnchor === 'bottom' ? 'flex-end' : slide.textAnchor === 'top' ? 'flex-start' : 'center'
+  const isLast = slide.index === total
+
+  const verifiedBadge = showVerified ? `
+        <span class="ds-verified">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path fill="#3897f0" d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+            <path d="m9 12 2 2 4-4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>` : ''
+
+  const avatarBadge = (size: number, nameSize: number) => `
+    <div class="ds-avatar" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.4)}px;">${avatarInner(initial, avatarImage)}</div>
+    <div class="ds-avatar-namewrap">
+      <div class="ds-avatar-name" style="font-size:${nameSize}px;color:${handleColor};">${name}${verifiedBadge}</div>
+      <div class="ds-avatar-handle" style="font-size:${Math.round(nameSize * 0.6)}px;">${handle}</div>
+    </div>`
+
+  const dotsRow = (() => {
+    const base = dotSize || 9
+    const active = dotSize ? Math.round(dotSize * 1.22) : 11
+    return `
+    <div class="ds-dots-row">
+      ${Array.from({ length: total }).map((_, i) => {
+        const on = i === slide.index - 1
+        const size = on ? active : base
+        return `<span class="ds-dot${on ? ' on' : ''}" style="width:${size}px;height:${size}px;"></span>`
+      }).join('')}
+    </div>`
+  })()
+  const swipe = !isLast ? `<div class="ds-swipe">Arrasta para o lado &gt;</div>` : '<span></span>'
+
+  if (slide.background === 'cover') {
+    const imgStyle = coverBgStyle(slide.image, slide.imagePosition, slide.imageMirror, slide.imageBgSizePx)
+    return `
+    <div class="ds-slide ds-cover">
+      <div class="ds-cover-bg" style="${imgStyle}"></div>
+      ${slide.gradientOn === false ? '' : `<div style="position:absolute;inset:0;background:linear-gradient(to top, #000 0%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0) 72%);pointer-events:none;"></div>`}
+      <div class="ds-cover-content" style="left:${mh}px; right:${mh}px; bottom:${110 + mvBottom}px; gap:${gap}px; align-items:stretch; text-align:center;">
+        ${slide.title ? `<div class="ds-headline" data-field="title"${titleStyle(slide)}>${titleWithHighlights}</div>` : ''}
+        <div class="ds-avatar-row ds-avatar-row-center" style="justify-content:center;">${avatarBadge(avatarSize, handleSize)}</div>
+      </div>
+      ${brandTextOverlay(brandText, brandPosition, true, brandTextColor, brandTextSize, brandTextFont)}
+      <div class="ds-footer-overlay">
+        ${dotsRow}
+        ${swipe}
+      </div>
+    </div>`
+  }
+
+  // Avatar+nome fica ABAIXO da foto (linha própria, fora do card), não mais sobreposto
+  // por cima da imagem — pedido explícito, junto com o bloco inteiro centralizado.
+  const hasImg = (slide.imageLayout === 'top' || slide.imageLayout === 'bottom') && !slide.hideImage
+  const imgHeight = slide.imageHeight || 520
+  const imageCard = hasImg ? `
+    <div class="ds-imgcard" style="height:${imgHeight}px">
+      ${esImageBlock('top', slide.images, imgHeight, slide.imagePositions, slide.imageMirrors, '', slide.imageBgSizesPx)}
+    </div>` : ''
+
+  return `
+  <div class="ds-slide" style="padding:${48 + mv}px ${mh}px ${40 + mvBottom}px;">
+    <div class="ds-content" style="justify-content:center; gap:${gap}px; margin-top:${gap}px;">
+      ${slide.title ? `<div class="ds-headline" data-field="title"${titleStyle(slide)}>${titleWithHighlights}</div>` : ''}
+      ${slide.body ? `<div class="ds-body" data-field="body"${bodyStyle(slide)}>${bodyHTML}</div>` : ''}
+      ${imageCard}
+      <div class="ds-avatar-row ds-avatar-row-center" style="justify-content:center; align-self:stretch;">${avatarBadge(44, 22)}</div>
+    </div>
+    ${brandTextOverlay(brandText, brandPosition, false, brandTextColor, brandTextSize, brandTextFont)}
+    <div class="ds-footer">
+      ${dotsRow}
+      ${swipe}
+    </div>
+  </div>`
+}
+
+// Estilo "frase em foto" — foto cheia em todo slide, título bem grosso e arredondado
+// (tipo "Baloo") com sombra suave pra descolar da imagem, frase de apoio embaixo. Sem
+// avatar/pill nenhum — só um texto pequeno em caixa alta na capa (nome/categoria) e os
+// 4 ícones estilo Instagram (curtir/comentar/compartilhar/salvar), também só na capa.
+function renderSlidePhotoQuote(slide: Slide, total: number, dotSize?: number, dotsVisible?: boolean): string {
+  const titleWithHighlights = applyInlineMarkdown(applyHighlights(slide.title || '', slide.highlights || []))
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+  const subtitleWithHighlights = applyInlineMarkdown(applyHighlights(slide.subtitle || '', slide.highlights || []))
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+  const imgStyle = coverBgStyle(slide.image, slide.imagePosition, slide.imageMirror, slide.imageBgSizePx)
+  const mh = slide.marginH || 170
+  const mvBottom = slide.marginVBottom ?? 90
+  const gap = slide.blockGap || 18
+  const showChrome = !!slide.tag
+  const icons = `
+    <div class="pq-icons">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m22 2-7 20-4-9-9-4Z"/></svg>
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21 12 16l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"/></svg>
+    </div>`
+  const dots = renderDots('pq', total, slide.index - 1, dotSize, dotsVisible)
+  // Degradê próprio, mais suave que o imageGradientOverlay padrão (que tem um trecho 100%
+  // sólido antes de começar a esmaecer) — aqui é uma curva contínua, sem faixa sólida
+  // nenhuma, fechando só perto da própria borda. Some por uma faixa bem maior da foto
+  // (~55% da altura) em vez de virar preto chapado cedo.
+  const grad = slide.gradientOn === false ? '' : `<div style="position:absolute;inset:0;background:linear-gradient(to top, #000 0%, rgba(0,0,0,0.88) 12%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.2) 48%, rgba(0,0,0,0) 62%);pointer-events:none;"></div>`
+  return `
+  <div class="pq-slide">
+    <div class="pq-bg" style="${imgStyle}"></div>
+    ${grad}
+    ${showChrome ? `<div class="pq-handle" data-field="tag" style="padding:0 ${mh}px;">${slide.tag}</div>` : ''}
+    <div class="pq-content${slide.textAlign === 'left' ? ' pq-left' : ''}" style="bottom:${mvBottom}px; gap:${gap}px; padding:0 ${mh}px;">
+      ${slide.title ? `<div class="pq-title" data-field="title"${titleStyle(slide)}>${titleWithHighlights}</div>` : ''}
+      ${slide.subtitle ? `<div class="pq-subtitle" data-field="subtitle"${subtitleStyle(slide)}>${subtitleWithHighlights}</div>` : ''}
+      ${showChrome ? icons : ''}
+    </div>
+    ${dots}
   </div>`
 }
 
@@ -835,6 +1127,12 @@ function renderSlide(slide: Slide, total: number, instagram: string, initial: st
   }
   if (slide.style === 'bold-sans') {
     return renderSlideBoldSans(slide, total, instagram, initial, avatarImage, brandText, brandPosition, avatarSizeDefault, handleSizeDefault, handleColorDefault, verifiedDefault, brandTextColor, brandTextSize, brandTextFont, dotSize, dotsVisible)
+  }
+  if (slide.style === 'dark-story') {
+    return renderSlideDarkStory(slide, total, instagram, initial, avatarImage, brandText, brandPosition, avatarSizeDefault, handleSizeDefault, handleColorDefault, verifiedDefault, displayName, brandTextColor, brandTextSize, brandTextFont, dotSize, dotsVisible)
+  }
+  if (slide.style === 'photo-quote') {
+    return renderSlidePhotoQuote(slide, total, dotSize, dotsVisible)
   }
   const progress = Math.round((slide.index / total) * 100)
   const bg = slide.background
@@ -853,7 +1151,7 @@ function renderSlide(slide: Slide, total: number, instagram: string, initial: st
       <span class="prog-num">${slide.index}/${total}</span>
     </div>`
 
-  const titleWithHighlights = applyHighlights(slide.title || '', slide.highlights || [])
+  const titleWithHighlights = applyInlineMarkdown(applyHighlights(slide.title || '', slide.highlights || []))
 
   if (bg === 'cover') {
     const imgStyle = coverBgStyle(slide.image, slide.imagePosition, slide.imageMirror, slide.imageBgSizePx)
@@ -970,7 +1268,7 @@ export function generateSlideHTML(carousel: Carousel, slide: Slide): string {
 <title>Slide ${slide.index}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100..900&family=Plus+Jakarta+Sans:wght@200..800&family=Space+Grotesk:wght@300..700&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400..900&family=Archivo+Black&family=Inter:wght@200..800&family=Source+Serif+4:opsz,wght@8..60,200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100..900&family=Plus+Jakarta+Sans:wght@200..800&family=Space+Grotesk:wght@300..700&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400..900&family=Archivo+Black&family=Inter:wght@200..800&family=Source+Serif+4:opsz,wght@8..60,200..900&family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Nunito:wght@400..900&display=swap" rel="stylesheet">
 <style>
 ${css}
 body { background: #111; padding: 0; margin: 0; display: block; }
@@ -1023,7 +1321,7 @@ export function generateHTML(carousel: Carousel): string {
 <title>${carousel.title}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100..900&family=Plus+Jakarta+Sans:wght@200..800&family=Space+Grotesk:wght@300..700&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400..900&family=Archivo+Black&family=Inter:wght@200..800&family=Source+Serif+4:opsz,wght@8..60,200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100..900&family=Plus+Jakarta+Sans:wght@200..800&family=Space+Grotesk:wght@300..700&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400..900&family=Archivo+Black&family=Inter:wght@200..800&family=Source+Serif+4:opsz,wght@8..60,200..900&family=Bodoni+Moda:opsz,wght@6..96,400..900&family=Nunito:wght@400..900&display=swap" rel="stylesheet">
 <style>
 ${css}
 </style>

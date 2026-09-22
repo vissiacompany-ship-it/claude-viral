@@ -239,7 +239,7 @@ export default function ChatAssistant({ onUseContent }: { onUseContent?: (text: 
                     <button onClick={() => criarCarrossel(m.content, i)} disabled={creatingIdx === i}
                       className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-[13px] font-semibold disabled:opacity-60"
                       style={{ background: 'var(--grad)', color: '#000' }}>
-                      <Wand2 size={14}/> {creatingIdx === i ? 'Criando…' : 'Criar carrossel'}
+                      <Wand2 size={14}/> {creatingIdx === i ? 'Criando…' : 'Criar Conteúdo'}
                     </button>
                   )}
                 </div>

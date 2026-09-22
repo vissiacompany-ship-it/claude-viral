@@ -48,7 +48,7 @@ export default function InstagramPreview({ carousel, caption, onCaptionChange, o
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-6" style={{ background: 'rgba(0,0,0,0.75)' }} onClick={onClose}>
       <div className="flex gap-4" style={{ maxHeight: '92vh' }} onClick={e => e.stopPropagation()}>
-      <div className="rounded-[28px] overflow-y-auto flex flex-col" style={{ width: PHONE_W, maxHeight: '92vh', background: '#fff', boxShadow: '0 30px 80px rgba(0,0,0,.6)' }}>
+      <div className="rounded-[28px] overflow-x-hidden overflow-y-auto flex flex-col" style={{ width: PHONE_W, maxHeight: '92vh', background: '#fff', boxShadow: '0 30px 80px rgba(0,0,0,.6)' }}>
         {/* Post header */}
         <div className="flex items-center gap-2.5 px-4 py-3 flex-shrink-0">
           <div className="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0" style={{ background: 'var(--grad)' }}>
@@ -60,7 +60,7 @@ export default function InstagramPreview({ carousel, caption, onCaptionChange, o
         </div>
 
         {/* Slide (4:5, igual ao formato real 1080x1350) */}
-        <div className="relative flex-shrink-0" style={{ width: PHONE_W, height: IMG_H }}>
+        <div className="relative flex-shrink-0" style={{ width: PHONE_W, height: IMG_H, overflow: 'hidden' }}>
           <iframe
             ref={el => { iframeRefs.current[active] = el }}
             key={active}
@@ -125,7 +125,7 @@ export default function InstagramPreview({ carousel, caption, onCaptionChange, o
       </div>
 
       {/* Painel da legenda: botão de gerar se ainda não tem, ou o texto + copiar se já tem */}
-      <div className="rounded-2xl p-4 flex flex-col gap-3 flex-shrink-0 overflow-y-auto" style={{ width: 320, maxHeight: '92vh', background: 'var(--bg2)', border: '1px solid var(--border)' }}>
+      <div className="rounded-2xl p-4 flex flex-col gap-3 flex-shrink-0 overflow-y-auto" style={{ width: 320, maxHeight: '92vh', background: 'var(--bg2)' }}>
         <div className="flex items-center justify-between">
           <h3 className="font-bold text-sm" style={{ color: 'var(--text)' }}>Legenda</h3>
           <button onClick={onClose} className="p-1 rounded-lg" style={{ color: 'var(--muted)' }}><X size={16}/></button>

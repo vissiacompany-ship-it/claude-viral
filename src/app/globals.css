@@ -135,3 +135,7 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   cursor: pointer;
 }
+.rich-text-field:empty:before {
+  content: attr(data-placeholder);
+  color: var(--muted);
+}

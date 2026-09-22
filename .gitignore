@@ -40,6 +40,18 @@ yarn-error.log*
 /data/carousels.json
 /data/settings.json
 /data/chat-conversations.json
+/data/reference-items.json
+/data/idea-bank.json
+/data/narrative-bank.json
+/data/gallery.json
+/data/trends.json
+/data/*.bak-*
+/public/uploads/
+
+# ferramentas locais/pessoais — nunca fazem parte do produto vendido
+/.claude/
+/Modelos Encontrei/
+/src/app/template/\[id\]/1/
 
 # vercel
 .vercel

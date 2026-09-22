@@ -2,14 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getCarousel } from '@/lib/storage'
 import { generateSlideHTML } from '@/lib/html-renderer'
 import { launchBrowser } from '@/lib/browser'
+import { inlineCarouselImages } from '@/lib/image-store'
 
 export async function POST(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params
-  const carousel = getCarousel(id)
-  if (!carousel) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  const saved = getCarousel(id)
+  if (!saved) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  const carousel = inlineCarouselImages(saved)
 
   try {
     const browser = await launchBrowser()
@@ -39,6 +41,11 @@ export async function POST(
     pngs.forEach((buf, i) => {
       zip.file(`slide-${String(i + 1).padStart(2, '0')}.png`, buf)
     })
+    // Legenda em .txt junto no zip — pra colar direto no Instagram, sem precisar voltar no
+    // app pra copiar. Só entra se já existir uma gerada/salva pra esse carrossel.
+    if (carousel.content.caption?.trim()) {
+      zip.file('legenda.txt', carousel.content.caption)
+    }
     const blob: Blob = await zip.generateAsync({ type: 'blob' })
 
     return new NextResponse(blob, {

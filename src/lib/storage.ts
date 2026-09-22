@@ -1,12 +1,17 @@
 import fs from 'fs'
 import path from 'path'
-import { Profile, Carousel, CarouselTemplate, ChatConversation } from '@/types'
+import { Profile, Carousel, CarouselTemplate, ChatConversation, ReferenceItem, Idea, Narrative, Trend, GalleryImage } from '@/types'
 
 const DATA_DIR = path.join(process.cwd(), 'data')
 const PROFILES_FILE = path.join(DATA_DIR, 'profiles.json')
 const CAROUSELS_FILE = path.join(DATA_DIR, 'carousels.json')
 const TEMPLATES_FILE = path.join(DATA_DIR, 'templates.json')
 const CHATS_FILE = path.join(DATA_DIR, 'chat-conversations.json')
+const REFERENCES_FILE = path.join(DATA_DIR, 'reference-items.json')
+const IDEAS_FILE = path.join(DATA_DIR, 'idea-bank.json')
+const NARRATIVES_FILE = path.join(DATA_DIR, 'narrative-bank.json')
+const TRENDS_FILE = path.join(DATA_DIR, 'trends.json')
+const GALLERY_FILE = path.join(DATA_DIR, 'gallery.json')
 
 function ensureDataDir() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true })
@@ -108,4 +113,92 @@ export function saveChatConversation(conversation: ChatConversation): void {
 export function deleteChatConversation(id: string): void {
   const conversations = getChatConversations().filter(c => c.id !== id)
   writeJSON(CHATS_FILE, conversations)
+}
+
+// Biblioteca de Referências
+export function getReferenceItems(): ReferenceItem[] {
+  return readJSON<ReferenceItem[]>(REFERENCES_FILE, [])
+}
+
+export function saveReferenceItem(item: ReferenceItem): void {
+  const items = getReferenceItems()
+  const idx = items.findIndex(i => i.id === item.id)
+  if (idx >= 0) items[idx] = item
+  else items.unshift(item)
+  writeJSON(REFERENCES_FILE, items)
+}
+
+export function deleteReferenceItem(id: string): void {
+  const items = getReferenceItems().filter(i => i.id !== id)
+  writeJSON(REFERENCES_FILE, items)
+}
+
+// Banco de Ideias
+export function getIdeas(): Idea[] {
+  return readJSON<Idea[]>(IDEAS_FILE, [])
+}
+
+export function saveIdea(idea: Idea): void {
+  const ideas = getIdeas()
+  const idx = ideas.findIndex(i => i.id === idea.id)
+  if (idx >= 0) ideas[idx] = idea
+  else ideas.unshift(idea)
+  writeJSON(IDEAS_FILE, ideas)
+}
+
+export function deleteIdea(id: string): void {
+  writeJSON(IDEAS_FILE, getIdeas().filter(i => i.id !== id))
+}
+
+// Banco de Narrativas
+export function getNarratives(): Narrative[] {
+  return readJSON<Narrative[]>(NARRATIVES_FILE, [])
+}
+
+export function saveNarrative(narrative: Narrative): void {
+  const narratives = getNarratives()
+  const idx = narratives.findIndex(n => n.id === narrative.id)
+  if (idx >= 0) narratives[idx] = narrative
+  else narratives.unshift(narrative)
+  writeJSON(NARRATIVES_FILE, narratives)
+}
+
+export function deleteNarrative(id: string): void {
+  writeJSON(NARRATIVES_FILE, getNarratives().filter(n => n.id !== id))
+}
+
+// Tendências
+export function getTrends(): Trend[] {
+  return readJSON<Trend[]>(TRENDS_FILE, [])
+}
+
+export function saveTrend(trend: Trend): void {
+  const trends = getTrends()
+  const idx = trends.findIndex(t => t.id === trend.id)
+  if (idx >= 0) trends[idx] = trend
+  else trends.unshift(trend)
+  writeJSON(TRENDS_FILE, trends)
+}
+
+export function deleteTrend(id: string): void {
+  writeJSON(TRENDS_FILE, getTrends().filter(t => t.id !== id))
+}
+
+// Galeria de imagens (por perfil) — upload manual + toda imagem gerada em qualquer carrossel
+export function getGalleryImages(): GalleryImage[] {
+  return readJSON<GalleryImage[]>(GALLERY_FILE, [])
+}
+
+export function getGalleryImagesByProfile(profileId: string): GalleryImage[] {
+  return getGalleryImages().filter(g => g.profileId === profileId).sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+}
+
+export function saveGalleryImage(image: GalleryImage): void {
+  const images = getGalleryImages()
+  images.unshift(image)
+  writeJSON(GALLERY_FILE, images)
+}
+
+export function deleteGalleryImage(id: string): void {
+  writeJSON(GALLERY_FILE, getGalleryImages().filter(g => g.id !== id))
 }

@@ -5,7 +5,7 @@ import ChatAssistant from '@/components/ChatAssistant'
 
 export default function ChatPage() {
   return (
-    <div className="min-h-screen flex" style={{ background: 'var(--bo-paper)', color: 'var(--bo-ink)' }}>
+    <div className="h-screen overflow-hidden flex" style={{ background: 'var(--bo-paper)', color: 'var(--bo-ink)' }}>
       <Sidebar active="chat"/>
 
       <main className="flex-1 flex flex-col overflow-hidden">

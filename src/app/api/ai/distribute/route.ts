@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getTemplate } from '@/lib/storage'
 import { callClaudeChat, extractJSON } from '@/lib/claude'
+import { BODY_FORMATTING_RULES } from '@/lib/narrative-prompts'
 
 export async function POST(req: NextRequest) {
   const { templateId, content } = await req.json() as { templateId: string; content: string }
@@ -35,6 +36,9 @@ Retorne APENAS um JSON (array), um item por slide, na ordem, com essas chaves:
 - "title": headline/título do slide (curto, direto)
 - "subtitle": só preenche se "tem_subtitulo" for true (texto de apoio da capa); senão ""
 - "body": só preenche se "tem_corpo" for true (corpo do slide, pode ter parágrafos separados por \\n\\n); senão ""
+
+${BODY_FORMATTING_RULES}
+Isso é FORMATAÇÃO, não invenção de conteúdo — envolver em **duplo asterisco** um trecho que já existe no texto original não conta como alterar o texto, é permitido mesmo com a regra de "não invente nada" acima. Aplique negrito também no "subtitle" quando ele existir, seguindo a mesma lógica do corpo.
 
 Se o texto fornecido não for longo o suficiente pra preencher todos os slides com conteúdo próprio, distribua o que existe da forma mais natural possível entre os slides mais relevantes e deixe os campos vazios ("") nos slides que sobrarem — NUNCA invente conteúdo pra completar.`
 

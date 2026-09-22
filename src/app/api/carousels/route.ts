@@ -4,10 +4,35 @@ import { Carousel } from '@/types'
 import { v4 as uuid } from 'uuid'
 import { generateSlideHTML } from '@/lib/html-renderer'
 import { launchBrowser } from '@/lib/browser'
+import { persistImage, persistImages, inlineCarouselImages } from '@/lib/image-store'
+
+// Troca toda foto em base64 (data URL) do carrossel por um caminho de arquivo de verdade
+// antes de gravar no disco — é isso que mantém o data/carousels.json pequeno independente
+// de quantas fotos o carrossel tiver (ver comentário detalhado no GET, abaixo).
+function persistCarouselImages(carousel: Carousel): Carousel {
+  return {
+    ...carousel,
+    thumbnail: persistImage(carousel.thumbnail),
+    briefing: { ...carousel.briefing, avatarImage: persistImage(carousel.briefing.avatarImage) },
+    content: {
+      ...carousel.content,
+      slides: carousel.content.slides.map(s => ({
+        ...s,
+        image: persistImage(s.image),
+        images: persistImages(s.images),
+      })),
+    },
+  }
+}
 
 // Renderiza o slide 1 (via Playwright) e devolve uma miniatura JPEG pequena em base64
 // pra usar de preview no dashboard — se der erro, some sem quebrar o save.
-async function renderThumbnail(carousel: Carousel): Promise<string | undefined> {
+async function renderThumbnail(carouselIn: Carousel): Promise<string | undefined> {
+  // Numa atualização (carrossel já salvo antes), a imagem que chega aqui já é o caminho
+  // persistido (/uploads/carousels/xxx.jpg), não mais o data URL original — sem inlinar de
+  // volta pra base64, o Playwright (que renderiza via HTML solto, sem base URL nenhuma) não
+  // consegue carregar esse caminho raiz-relativo, e a miniatura sai sem a foto.
+  const carousel = inlineCarouselImages(carouselIn)
   const slide = carousel.content.slides[0]
   if (!slide) return undefined
   try {
@@ -39,7 +64,16 @@ export async function GET(req: NextRequest) {
     if (!carousel) return NextResponse.json({ error: 'Not found' }, { status: 404 })
     return NextResponse.json(carousel)
   }
-  const carousels = getCarousels()
+  // Listagem (Dashboard/Meu Conteúdo) só precisa de id/título/status/thumbnail pra montar os
+  // cards — nunca das imagens de cada slide em base64. Sem isso, o JSON de resposta cresce
+  // proporcional a TODAS as fotos de TODOS os carrosséis salvos (o arquivo em disco já passa
+  // de 50MB com poucas dezenas de carrosséis), deixando a listagem cada vez mais lenta pra
+  // sempre. A tela de edição sempre busca o carrossel individual (com ?id=) pra ter as fotos.
+  const carousels = getCarousels().map(c => ({
+    ...c,
+    briefing: { ...c.briefing, avatarImage: undefined },
+    content: { ...c.content, slides: c.content.slides.map(s => ({ ...s, image: undefined, images: undefined })) },
+  }))
   return NextResponse.json(carousels)
 }
 
@@ -65,8 +99,9 @@ export async function POST(req: NextRequest) {
     thumbnail: body.thumbnail,
   }
   carousel.thumbnail = (await renderThumbnail(carousel)) || carousel.thumbnail
-  saveCarousel(carousel)
-  return NextResponse.json(carousel)
+  const persisted = persistCarouselImages(carousel)
+  saveCarousel(persisted)
+  return NextResponse.json(persisted)
 }
 
 export async function PATCH(req: NextRequest) {
@@ -74,7 +109,7 @@ export async function PATCH(req: NextRequest) {
   const { getCarousel } = await import('@/lib/storage')
   const existing = getCarousel(body.id)
   if (!existing) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-  const updated: Carousel = { ...existing, ...body, updatedAt: new Date().toISOString() }
+  const updated = persistCarouselImages({ ...existing, ...body, updatedAt: new Date().toISOString() })
   saveCarousel(updated)
   return NextResponse.json(updated)
 }
